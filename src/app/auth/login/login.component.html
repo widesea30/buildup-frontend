@@ -1,0 +1,35 @@
+<div class="px-4 pt-12 pb-4 w-full h-screen overflow-hidden">
+  <div class="relative flex flex-col h-full">
+    <div class="text-22 font-bold">Sign in to BuildUp</div>
+    <form nz-form name="loginForm" [formGroup]="loginForm" (ngSubmit)="onSubmit()" novalidate class="flex flex-col justify-center mt-8">
+      <nz-form-item class="mb-5">
+        <input formControlName="email" nz-input nzBorderless class="text-base py-4 px-3 bg-gris_paler" placeholder="Email" />
+        <div *ngIf="submitted && f.email.errors" class="text-sm text-red-500 pl-3">
+          <div *ngIf="f.email.errors.required">Required</div>
+          <div *ngIf="f.email.errors.email">Invalid email address</div>
+        </div>
+      </nz-form-item>
+        
+      <nz-form-item>
+        <div class="relative w-full">
+          <input formControlName="password" [type]="passwordVisible ? 'text' : 'password'" nz-input nzBorderless class="text-base w-full py-4 px-3 bg-gris_paler" placeholder="Password" />
+          <a (click)="passwordVisible = !passwordVisible" 
+            class="absolute right-0 text-sm text-black font-semibold bg-transparent text-opacity-20 hover:text-opacity-100 top-1/2 right-4 transform -translate-y-2/4">
+            {{ passwordVisible? 'Hide':'Show' }}
+          </a>
+        </div>
+        <div *ngIf="submitted && f.password.errors" class="text-sm text-red-500 pl-3">
+          <div *ngIf="f.password.errors.required">Required</div>
+        </div>
+      </nz-form-item>
+      
+      <div class="mt-8">
+        <a href="#" class="text-sm text-rouge font-semibold py-4">Forgot password?</a>
+      </div>
+
+      <div class="absolute bottom-4 w-full">
+        <button type="submit" nz-button nzType="link" nzShape="round" class="text-base text-white bg-rouge h-14 w-full hover:text-opacity-80">Sign in</button>
+      </div>
+    </form>  
+  </div>
+</div>

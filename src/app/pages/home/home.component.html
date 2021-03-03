@@ -1,0 +1,53 @@
+<div class="px-4 py-8 w-full h-screen bg-gris_paler">
+	<div class="relative h-full">
+		<div class="flex justify-between items-end">
+			<div class="text-sm font-semibold">BuildUp!</div>
+			<div class="relative">
+				<i nz-icon [nzType]="'bell'" class="text-xl"></i>
+				<div class="absolute bg-red-500 rounded-full w-2 h-2 right-0.5 top-1.5"></div>
+			</div>
+		</div>
+		<!-- notification panel -->
+		<div class="bg-rouge text-white p-4 mt-3.5">
+			<div class="flex items-center gap-3">
+				<img src="assets/icons/water-drop.svg" alt="" />
+				<div>
+					<div class="text-base font-medium">Water leak detected</div>
+					<div class="text-sm">2 min ago</div>
+				</div>
+			</div>
+			<div class="text-sm mt-2">11th floor · Apt. 1102 · Kitchen</div>
+		</div>
+
+		<!-- address panel -->
+		<div class="bg-white p-4 mt-6">
+			<div class="text-22 font-bold">Marriott Chateau Champlain</div>
+			<div class="text-xs text-opacity-50 mt-3">1050 De La Gauchetiere West, Montreal</div>
+		</div>
+
+		<!-- count section -->
+		<div class="grid grid-cols-2 gap-3 mt-3">
+			<div class="bg-white p-4">
+				<div class="text-sm text-brown font-medium">Equipment</div>
+				<div class="text-2xl font-bold mt-2">4</div>
+			</div>
+			<div class="bg-white p-4">
+				<div class="text-sm text-brown font-medium">Users</div>
+				<div class="text-2xl font-bold mt-2">4</div>
+			</div>
+			<div class="bg-white p-4 col-span-2 flex items-center justify-between">
+				<div>
+					<div class="text-sm text-brown font-medium">Devices</div>
+					<div class="text-2xl font-bold mt-2">4</div>
+				</div>
+				<a>
+					<i nz-icon [nzType]="'right'" class="text-xl font-bold text-rouge"></i>
+				</a>
+			</div>
+		</div>
+
+		<div class="absolute bottom-0 text-center w-full">
+			<button type="button" nz-button nzType="link" nzShape="round" class="text-base text-black bg-white h-14 px-8 hover:text-opacity-80">Update system status</button>
+		</div>
+	</div>
+</div>
