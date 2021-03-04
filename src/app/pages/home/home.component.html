@@ -1,53 +1,120 @@
-<div class="px-4 py-8 w-full h-screen bg-gris_paler">
-	<div class="relative h-full">
-		<div class="flex justify-between items-end">
-			<div class="text-sm font-semibold">BuildUp!</div>
-			<div class="relative">
-				<i nz-icon [nzType]="'bell'" class="text-xl"></i>
-				<div class="absolute bg-red-500 rounded-full w-2 h-2 right-0.5 top-1.5"></div>
-			</div>
-		</div>
-		<!-- notification panel -->
-		<div class="bg-rouge text-white p-4 mt-3.5">
-			<div class="flex items-center gap-3">
-				<img src="assets/icons/water-drop.svg" alt="" />
-				<div>
-					<div class="text-base font-medium">Water leak detected</div>
-					<div class="text-sm">2 min ago</div>
-				</div>
-			</div>
-			<div class="text-sm mt-2">11th floor · Apt. 1102 · Kitchen</div>
-		</div>
+<div class="px-4 py-8 w-full h-screen bg-gray2">
+  <div class="relative h-full">
+    <div class="flex justify-between items-end">
+      <div class="text-sm font-semibold">BuildUp!</div>
+      <a class="relative" routerLink="events">
+        <i nz-icon [nzType]="'bell'" class="text-xl text-black font-bold"></i>
+        <div
+          *ngIf="event"
+          class="absolute bg-red-500 rounded-full w-2 h-2 right-0.5 top-1.5"
+        ></div>
+      </a>
+    </div>
+    <!-- notification panel -->
+    <div
+      *ngIf="event"
+      class="text-white p-4 mt-3.5 cursor-pointer"
+      [ngClass]="
+        event?.event_type === 'Water leak detected'
+          ? 'bg-rouge'
+          : 'bg-gray3'
+      "
+      (click)="createTplModal(tplContent)"
+    >
+      <div class="flex items-center gap-3">
+        <img src="assets/icons/{{ warnImg }}.svg" alt="" />
+        <div>
+          <div class="text-base font-medium">{{ event?.event_type }}</div>
+          <div class="text-sm">{{ event?.date_occurred }}</div>
+        </div>
+      </div>
+      <div class="text-sm mt-2">
+        {{ event ? event.floor + "th floor - " + event.position : "" }}
+      </div>
+    </div>
 
-		<!-- address panel -->
-		<div class="bg-white p-4 mt-6">
-			<div class="text-22 font-bold">Marriott Chateau Champlain</div>
-			<div class="text-xs text-opacity-50 mt-3">1050 De La Gauchetiere West, Montreal</div>
-		</div>
+    <!-- address panel -->
+    <div class="bg-white p-4 mt-6">
+      <div class="text-22 font-bold">{{ building }}</div>
+      <div class="text-xs text-opacity-50 mt-3">{{ location }}</div>
+    </div>
 
-		<!-- count section -->
-		<div class="grid grid-cols-2 gap-3 mt-3">
-			<div class="bg-white p-4">
-				<div class="text-sm text-brown font-medium">Equipment</div>
-				<div class="text-2xl font-bold mt-2">4</div>
-			</div>
-			<div class="bg-white p-4">
-				<div class="text-sm text-brown font-medium">Users</div>
-				<div class="text-2xl font-bold mt-2">4</div>
-			</div>
-			<div class="bg-white p-4 col-span-2 flex items-center justify-between">
-				<div>
-					<div class="text-sm text-brown font-medium">Devices</div>
-					<div class="text-2xl font-bold mt-2">4</div>
-				</div>
-				<a>
-					<i nz-icon [nzType]="'right'" class="text-xl font-bold text-rouge"></i>
-				</a>
-			</div>
-		</div>
+    <!-- count section -->
+    <div class="grid grid-cols-2 gap-3 mt-3">
+      <div class="bg-white p-4">
+        <div class="text-sm text-brown font-medium">Equipment</div>
+        <div class="text-2xl font-bold mt-2">{{ equipments }}</div>
+      </div>
+      <div class="bg-white p-4">
+        <div class="text-sm text-brown font-medium">Users</div>
+        <div class="text-2xl font-bold mt-2">{{ users }}</div>
+      </div>
+      <div class="bg-white p-4 col-span-2 flex items-center justify-between">
+        <div>
+          <div class="text-sm text-brown font-medium">Devices</div>
+          <div class="text-2xl font-bold mt-2">{{ devices }}</div>
+        </div>
+        <img src="assets/icons/right.svg" alt="" />
+      </div>
+    </div>
 
-		<div class="absolute bottom-0 text-center w-full">
-			<button type="button" nz-button nzType="link" nzShape="round" class="text-base text-black bg-white h-14 px-8 hover:text-opacity-80">Update system status</button>
-		</div>
-	</div>
+    <div class="absolute bottom-0 text-center w-full">
+      <button
+        type="button"
+        nz-button
+        nzType="link"
+        nzShape="round"
+        class="text-base text-black bg-white h-14 px-8 hover:text-opacity-80"
+      >
+        Update system status
+      </button>
+    </div>
+
+    <ng-template #tplContent>
+      <div class="flex justify-between mb-10">
+        <div>
+          <div class="text-22 font-bold">{{ event ?.event_type }}</div>
+          <div class="text-sm">{{ event.date_occurred }}</div>
+        </div>
+        <button
+          (click)="destroyModal()"
+          nz-button
+          nzType="link"
+          nzShape="circle"
+          class="bg-gray4 text-black flex justify-center items-center"
+        >
+          <i nz-icon nzType="close"></i>
+        </button>
+      </div>
+      <div>
+        <div class="text-sm flex gap-2 items-center">
+          <div class="w-4">
+            <img class="mx-auto" src="assets/icons/marker.svg" alt="" />
+          </div>
+          <div>
+            {{ event ? event.floor + "th floor - " + event.position : "" }}
+          </div>
+        </div>
+        <div class="text-sm flex gap-2 items-center mt-3">
+          <div class="w-4">
+            <img class="mx-auto" src="assets/icons/clock.svg" alt="" />
+          </div>
+          <div>{{ event.date_occurred1 }}</div>
+        </div>
+      </div>
+      <div class="w-max mt-3">
+        <div class="flex bg-gray1 rounded-full px-8 py-4 gap-4">
+          <div class="text-sm">
+            Detected by <span class="text-rouge">{{ event.device_name }}</span>
+          </div>
+          <img src="assets/icons/right.svg" alt="" />
+        </div>
+      </div>
+      <div class="text-sm font-semibold mt-8">Suggested action</div>
+      <div class="text-sm mt-3">
+        Check the area for any water damage and notify your supervisor. The
+        water valve should be open only after the water leak has been fixed.
+      </div>
+    </ng-template>
+  </div>
 </div>

@@ -13,7 +13,8 @@ import { en_US } from 'ng-zorro-antd/i18n';
 import { registerLocaleData } from '@angular/common';
 import en from '@angular/common/locales/en';
 
-import { AuthService } from './services/auth.service';
+import { AuthService } from './services/auth/auth.service';
+import { MainService } from './services/main/main.service';
 import { ServiceUtils } from './services/serviceUtils';
 
 registerLocaleData(en);
@@ -34,6 +35,7 @@ registerLocaleData(en);
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
     AuthService,
+    MainService,
     ServiceUtils
   ],
   bootstrap: [AppComponent]
