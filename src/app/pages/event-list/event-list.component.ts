@@ -14,9 +14,16 @@ export class EventListComponent implements OnInit {
   events: Array<Event> = [];
   event: Event = null;
 
+  loading = false;
+
   constructor(private mainService: MainService, private modal: NzModalService) { }
 
   ngOnInit(): void {
+    this.getEvents();
+  }
+
+  getEvents(): void {
+    this.loading = true;
     this.mainService.getEvents().subscribe((res: any) => {
       if (res) {
         this.events = res.read;
@@ -31,7 +38,8 @@ export class EventListComponent implements OnInit {
           this.event = evt;
         }
       }
-    });
+      this.loading = false;
+    }, (err: any) => { this.loading = false; });
   }
 
   getWarnImg(evt: Event, tp: Number) {

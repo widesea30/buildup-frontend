@@ -1,7 +1,8 @@
 <div class="px-4 pt-12 pb-4 w-full h-screen overflow-hidden">
   <div class="relative flex flex-col h-full">
-    <div class="text-22 font-bold">Sign in to BuildUp</div>
-    <form nz-form name="loginForm" [formGroup]="loginForm" (ngSubmit)="onSubmit()" novalidate class="flex flex-col justify-center mt-8">
+    <div class="text-22 font-bold mb-8">Sign in to BuildUp</div>
+    <div *ngIf="hasError" class="text-rouge">Email or password is incorrect!</div>
+    <form nz-form name="loginForm" [formGroup]="loginForm" (ngSubmit)="onSubmit()" novalidate class="flex flex-col justify-center">
       <nz-form-item class="mb-5">
         <input formControlName="email" nz-input nzBorderless class="text-base py-4 px-3 bg-gray2" placeholder="Email" />
         <div *ngIf="submitted && f.email.errors" class="text-sm text-red-500 pl-3">

@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { HomeComponent } from './home/home.component';
 import { EventListComponent } from './event-list/event-list.component';
+import { DeviceListComponent } from './device-list/device-list.component';
 
 const routes: Routes = [
   {
@@ -12,6 +13,10 @@ const routes: Routes = [
   {
     path: 'events',
     component: EventListComponent
+  },
+  {
+    path: 'devices',
+    component: DeviceListComponent
   }
 ];
 

@@ -18,11 +18,19 @@ export class HomeComponent implements OnInit {
   event:Event = null;
 
   warnImg = '';
+
+  loading = false;
+
+  showUpdate = false;
   
   constructor(private mainService: MainService, private modal: NzModalService) { }
 
   ngOnInit(): void {
-    
+    this.getDetail();
+  }
+
+  getDetail() {
+    this.loading = true;
     this.mainService.getDetail().subscribe((res: any) => {
       if (res) {
         this.users = res.users;
@@ -45,7 +53,9 @@ export class HomeComponent implements OnInit {
           }
         }
       }
-    });
+
+      this.loading = false;
+    }, (err: any) => { this.loading = false; });
   }
 
   createTplModal(tplContent: TemplateRef<{}>): void {
@@ -63,5 +73,18 @@ export class HomeComponent implements OnInit {
 
   destroyModal(): void {
     this.modal.closeAll();
+  }
+
+  showUpdateform(): void {
+    this.showUpdate = true;
+  }
+
+  update(): void {
+    this.showUpdate = false;
+    this.getDetail();
+  }
+
+  cancel(): void {
+    this.showUpdate = false;
   }
 }

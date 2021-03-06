@@ -1,5 +1,12 @@
 <div class="px-4 py-8 w-full h-screen bg-gray2">
-  <div class="relative h-full">
+  <div *ngIf="loading" class="w-full h-full relative">
+    <img
+      class="absolute top-1/2 left-1/2 transform -translate-y-2/4 -translate-x-2/4 w-24 h-24"
+      src="assets/images/loading.gif"
+      alt=""
+    />
+  </div>
+  <div *ngIf="!loading" class="relative h-full">
     <div class="flex justify-between items-end">
       <div class="text-sm font-semibold">BuildUp!</div>
       <a class="relative" routerLink="events">
@@ -10,14 +17,13 @@
         ></div>
       </a>
     </div>
+
     <!-- notification panel -->
     <div
       *ngIf="event"
       class="text-white p-4 mt-3.5 cursor-pointer"
       [ngClass]="
-        event?.event_type === 'Water leak detected'
-          ? 'bg-rouge'
-          : 'bg-gray3'
+        event?.event_type === 'Water leak detected' ? 'bg-rouge' : 'bg-gray3'
       "
       (click)="createTplModal(tplContent)"
     >
@@ -60,20 +66,48 @@
 
     <div class="absolute bottom-0 text-center w-full">
       <button
+        *ngIf="!showUpdate"
         type="button"
         nz-button
         nzType="link"
         nzShape="round"
         class="text-base text-black bg-white h-14 px-8 hover:text-opacity-80"
+        (click)="showUpdate=true"
       >
         Update system status
       </button>
+      <div *ngIf="showUpdate">
+        <div class="text-base font-semibold mb-1">Update system status?</div>
+        <div class="text-sm mb-4">This negatively affects devices’ battery life</div>
+        <div class="flex justify-around">
+          <button
+            type="button"
+            nz-button
+            nzType="link"
+            nzShape="round"
+            class="text-base text-black font-semibold bg-white h-14 px-8 hover:text-opacity-80"
+            (click)="showUpdate=false"
+          >
+            No, cancel
+          </button>
+          <button
+            type="button"
+            nz-button
+            nzType="link"
+            nzShape="round"
+            class="text-base text-rouge font-semibold bg-white h-14 px-8 hover:text-opacity-80"
+            (click)="update()"
+          >
+            Yes, update
+          </button>
+        </div>
+      </div>
     </div>
 
     <ng-template #tplContent>
       <div class="flex justify-between mb-10">
         <div>
-          <div class="text-22 font-bold">{{ event ?.event_type }}</div>
+          <div class="text-22 font-bold">{{ event?.event_type }}</div>
           <div class="text-sm">{{ event.date_occurred }}</div>
         </div>
         <button

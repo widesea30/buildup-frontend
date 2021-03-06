@@ -8,10 +8,11 @@ import { NzModalModule } from 'ng-zorro-antd/modal';
 import { PagesRoutingModule } from './pages-routing.module';
 import { HomeComponent } from './home/home.component';
 import { EventListComponent } from './event-list/event-list.component';
+import { DeviceListComponent } from './device-list/device-list.component';
 
 
 @NgModule({
-  declarations: [HomeComponent, EventListComponent],
+  declarations: [HomeComponent, EventListComponent, DeviceListComponent],
   imports: [
     CommonModule,
     PagesRoutingModule,

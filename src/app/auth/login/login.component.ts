@@ -18,6 +18,7 @@ export class LoginComponent implements OnInit {
   submitted = false;
   returnUrl: string;
   error = '';
+  hasError = false;
   loading = false;
   token = '';
 
@@ -52,15 +53,15 @@ export class LoginComponent implements OnInit {
    */
   onSubmit() {
     this.submitted = true;
-    
-    console.log(this.loginForm.invalid)
+    this.hasError = false;
     // stop here if form is invalid
     if (this.loginForm.invalid) {
-      return;
+      return false;
     }
 
     localStorage.setItem('authErr', '');
     this.loading = true;
+    
     this.authService.login(this.f.email.value, this.f.password.value)
       .pipe(first())
       .subscribe(
@@ -71,15 +72,21 @@ export class LoginComponent implements OnInit {
             this.router.navigate([this.returnUrl]);
           } else {
             this.error = res.status;
+            this.hasError = true;
           }
+          this.loading = false;
         },
         (err) => {
+          this.hasError = true;
+          this.loading = false;
+
           if (err.error) {
             this.error = err.error.status;
           } else {
             this.error = 'Invalid credentials.';
           }
-
         });
+
+    return false;
   }
 }
