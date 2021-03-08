@@ -1,0 +1,12 @@
+.device-item {
+    position: relative;
+  }
+  
+  .device-item::before {
+    position: absolute;
+    content: "";
+    width: 100%;
+    height: 1px;
+    bottom: 0;
+    background-color: #F0F0F0;
+  }

@@ -19,4 +19,8 @@ export class MainService {
   public updateEventRead(event_id) {
     return this.serviceUtils.ApiPOST('event/update/', { event_id: event_id });
   }
+
+  public getDevices() {
+    return this.serviceUtils.ApiGET('device/');
+  }
 }
