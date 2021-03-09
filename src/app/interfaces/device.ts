@@ -7,6 +7,7 @@ export interface Device {
   date_updated: string;
   floor: number;
   position: string;
+  date_added: string;
 }
 
 export const Device_Types = [ 'Clog Detector', 'Water Detector Industrial', 'Water Detector'];

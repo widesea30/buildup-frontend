@@ -16,11 +16,15 @@ export class MainService {
     return this.serviceUtils.ApiGET('event/');
   }
 
-  public updateEventRead(event_id) {
+  public updateEventRead(event_id: number) {
     return this.serviceUtils.ApiPOST('event/update/', { event_id: event_id });
   }
 
   public getDevices() {
     return this.serviceUtils.ApiGET('device/');
+  }
+
+  public getDeviceEvents(id: number) {
+    return this.serviceUtils.ApiGET('event/device/' + id);
   }
 }

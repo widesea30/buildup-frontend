@@ -61,7 +61,7 @@
       </div>
       <div class="mt-6">
         <div *ngFor="let dev of filteredDevices">
-          <div class="device-item py-3">
+          <div class="device-item py-3 cursor-pointer" (click)="goDeviceDetail(dev.id, dev.device_name)">
             <div class="flex justify-between items-center mb-0.5">
               <div class="flex items-center gap-2">
                 <div><img src="assets/icons/clog-2.svg" alt="" /></div>
@@ -254,7 +254,7 @@
         No results
       </div>
       <div *ngFor="let dev of searchedDevices">
-        <div class="device-item py-3">
+        <div class="device-item py-3 cursor-pointer" (click)="goDeviceDetail(dev.id, dev.device_name)">
           <div class="flex justify-between items-center mb-0.5">
             <div class="flex items-center gap-2">
               <div><img src="assets/icons/clog-2.svg" alt="" /></div>

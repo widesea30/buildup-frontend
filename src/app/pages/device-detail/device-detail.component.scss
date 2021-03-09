@@ -1,8 +1,8 @@
-.device-item {
+.event-item {
   position: relative;
 }
 
-.device-item::before {
+.event-item::before {
   position: absolute;
   content: "";
   width: 100%;

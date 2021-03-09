@@ -3,7 +3,9 @@ export interface Event {
   date_occurred: string;
   date_occurred1: string;
   event_type: string;
+  device_id: number;
   device_name: string;
+  device_type: string;
   floor: number;
   position: string;
 }

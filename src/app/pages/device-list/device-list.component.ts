@@ -1,5 +1,6 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { NzModalService } from 'ng-zorro-antd/modal';
+import { Router } from '@angular/router';
 import { MainService } from '../../services/main/main.service';
 import { Device, Device_Types } from '../../interfaces/device';
 import { getTimeString } from '../../core/helpers/helper';
@@ -23,7 +24,7 @@ export class DeviceListComponent implements OnInit {
   floorFilters = [];
   filteredDevices: Array<Device> = [];
 
-  constructor(private mainService: MainService, private modal: NzModalService) { }
+  constructor(private mainService: MainService, private modal: NzModalService, private router: Router) { }
 
   ngOnInit(): void {
     this.getDevices();
@@ -130,5 +131,9 @@ export class DeviceListComponent implements OnInit {
         });
         return res;
       });
+  }
+
+  goDeviceDetail(id, name) {
+    this.router.navigate(['/device/', id, name]);
   }
 }
