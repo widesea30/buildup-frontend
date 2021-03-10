@@ -1,6 +1,6 @@
-import { Component, OnInit, TemplateRef } from '@angular/core';
+import { Component, OnInit, TemplateRef, AfterViewInit, ElementRef, ViewChild, Input } from '@angular/core';
 import { NzModalService } from 'ng-zorro-antd/modal';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { MainService } from '../../services/main/main.service';
 import { Event, Event_type } from '../../interfaces/event';
 import { getTimeString, formatTimeString } from '../../core/helpers/helper';
@@ -11,16 +11,26 @@ import { getTimeString, formatTimeString } from '../../core/helpers/helper';
   styleUrls: ['./event-list.component.scss']
 })
 export class EventListComponent implements OnInit {
+  event_id: number;
 
   events: Array<Event> = [];
   event: Event = null;
 
   loading = false;
-
-  constructor(private mainService: MainService, private modal: NzModalService, private router: Router) { }
+  
+  @ViewChild('tplContent') private tplContent: TemplateRef<any>;
+  constructor(private mainService: MainService, private modal: NzModalService, private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.event_id = parseInt(this.route.snapshot.paramMap.get("id"));
     this.getEvents();
+  }
+
+  showInitModal(evt: Event) {
+    setTimeout(() => {
+      this.createTplModal(this.tplContent, evt)
+    }, 1000)
+    
   }
 
   getEvents(): void {
@@ -32,11 +42,20 @@ export class EventListComponent implements OnInit {
           evt.date_occurred1 = formatTimeString(evt.date_occurred);
           evt.date_occurred = getTimeString(evt.date_occurred);
         });
+        
         if (res.unread) {
           let evt = res.unread;
           evt.date_occurred1 = formatTimeString(evt.date_occurred);
           evt.date_occurred = getTimeString(evt.date_occurred);
           this.event = evt;
+        }
+
+        if (this.event_id) {
+          let evts = this.events;
+          evts.push(this.event);
+          let evt = evts.filter(el => el.id === this.event_id);
+          if (evt.length > 0)
+            this.showInitModal(evt[0]);
         }
       }
       this.loading = false;

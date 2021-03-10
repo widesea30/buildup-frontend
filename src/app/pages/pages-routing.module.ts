@@ -16,6 +16,10 @@ const routes: Routes = [
     component: EventListComponent
   },
   {
+    path: 'events/:id',
+    component: EventListComponent
+  },
+  {
     path: 'devices',
     component: DeviceListComponent
   },
