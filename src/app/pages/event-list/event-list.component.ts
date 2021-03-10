@@ -76,6 +76,7 @@ export class EventListComponent implements OnInit {
   }
 
   goDeviceDetail(id, name) {
+    this.destroyModal();
     this.router.navigate(['/device/', id, name]);
   }
 }
