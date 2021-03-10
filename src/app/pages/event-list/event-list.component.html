@@ -86,7 +86,10 @@
         </div>
       </div>
       <div class="w-max mt-3">
-        <div class="grid bg-gray1 rounded-full px-8 py-4 gap-4">
+        <div 
+          class="flex bg-gray1 rounded-full px-8 py-4 gap-4 cursor-pointer"
+          (click)="goDeviceDetail(params.value.id, params.value.device_name)"
+        >
           <div class="text-sm">
             Detected by
             <span class="text-rouge">{{ params.value.device_name }}</span>

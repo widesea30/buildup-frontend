@@ -1,5 +1,6 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { NzModalService } from 'ng-zorro-antd/modal';
+import { Router } from '@angular/router';
 import { MainService } from '../../services/main/main.service';
 import { Event, Event_type } from '../../interfaces/event';
 import { getTimeString, formatTimeString } from '../../core/helpers/helper';
@@ -16,7 +17,7 @@ export class EventListComponent implements OnInit {
 
   loading = false;
 
-  constructor(private mainService: MainService, private modal: NzModalService) { }
+  constructor(private mainService: MainService, private modal: NzModalService, private router: Router) { }
 
   ngOnInit(): void {
     this.getEvents();
@@ -72,5 +73,9 @@ export class EventListComponent implements OnInit {
 
   destroyModal(): void {
     this.modal.closeAll();
+  }
+
+  goDeviceDetail(id, name) {
+    this.router.navigate(['/device/', id, name]);
   }
 }
