@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  serverUrl: 'http://localhost:8000'
+  serverUrl: 'https://backend-dot-thingsfactorychirpstack.nn.r.appspot.com'
 };

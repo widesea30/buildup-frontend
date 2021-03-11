@@ -1,0 +1,9 @@
+runtime: nodejs10
+handlers:
+- url: /
+  static_files: dist/BuildUp/index.html
+  upload: dist/BuildUp/index.html
+  secure: always
+- url: /
+  static_dir: dist/BuildUp/
+  secure: always
