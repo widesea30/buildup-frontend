@@ -39,9 +39,9 @@ export class DeviceDetailComponent implements OnInit {
 
         this.events = res.events;
         this.events.forEach(evt => {
-          evt.date_occurred = getTimeString(evt.date_occurred);
+          evt.eventCreatedDate = getTimeString(evt.eventCreatedDate);
         });
-        this.events.push({event_type: 'Device added', date_occurred: this.device.date_added});
+        this.events.push({eventDescription: 'Device added', eventCreatedDate: this.device.date_added});
       }
       this.loading = false;
     }, (err: any) => { this.loading = false; });

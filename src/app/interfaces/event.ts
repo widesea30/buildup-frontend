@@ -1,8 +1,9 @@
 export interface Event {
   id: number;
-  date_occurred: string;
-  date_occurred1: string;
-  event_type: string;
+  eventCreatedDate: string;
+  eventCreatedDate1: string;
+  eventResolvedDate: string;
+  eventDescription: string;
   device_id: number;
   device_name: string;
   device_type: string;

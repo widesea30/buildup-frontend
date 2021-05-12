@@ -39,14 +39,14 @@ export class EventListComponent implements OnInit {
       if (res) {
         this.events = res.read;
         this.events.forEach(evt => {
-          evt.date_occurred1 = formatTimeString(evt.date_occurred);
-          evt.date_occurred = getTimeString(evt.date_occurred);
+          evt.eventCreatedDate1 = formatTimeString(evt.eventCreatedDate);
+          evt.eventCreatedDate = getTimeString(evt.eventCreatedDate);
         });
         
         if (res.unread) {
           let evt = res.unread;
-          evt.date_occurred1 = formatTimeString(evt.date_occurred);
-          evt.date_occurred = getTimeString(evt.date_occurred);
+          evt.eventCreatedDate1 = formatTimeString(evt.eventCreatedDate);
+          evt.eventCreatedDate = getTimeString(evt.eventCreatedDate);
           this.event = evt;
         }
 
@@ -64,14 +64,14 @@ export class EventListComponent implements OnInit {
 
   getWarnImg(evt: Event, tp: Number) {
     let warnImg = '';
-    if (evt.event_type === Event_type.clog_warn) {
+    if (evt.eventDescription === Event_type.clog_warn) {
       warnImg = 'clog';
-    } else if (evt.event_type === Event_type.water_leak) {
+    } else if (evt.eventDescription === Event_type.water_leak) {
       if (tp === 0)
         warnImg = 'water-drop-white';
       else
         warnImg = 'water-drop-black';
-    } else if (evt.event_type === Event_type.low_battery) {
+    } else if (evt.eventDescription === Event_type.low_battery) {
       warnImg = 'low-battery';
     }
     return warnImg;

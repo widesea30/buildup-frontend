@@ -5,7 +5,8 @@ export interface Device {
   radio_status: boolean;
   battery_status: boolean;
   date_updated: string;
-  floor: number;
+  floorName: number;
+  floor: string;
   position: string;
   date_added: string;
 }

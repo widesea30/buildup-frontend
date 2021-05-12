@@ -55,7 +55,7 @@ export class DeviceListComponent implements OnInit {
       this.searchedDevices = this.devices.filter(el => 
         el.device_name.toLowerCase().includes(search_val) 
         || el.device_type.toLowerCase().includes(search_val)
-        || (el.floor + "th - " + el.position).toLowerCase().includes(search_val)
+        || (el.floor + " " + el.position).toLowerCase().includes(search_val)
       );
     } else {
       this.searchedDevices = [];
@@ -127,7 +127,7 @@ export class DeviceListComponent implements OnInit {
           if (el.device_type == element) res = true;
         });
         this.floorFilters.forEach(element => {
-          if (el.floor == element) res = true;
+          if (el.floorName == element) res = true;
         });
         return res;
       });

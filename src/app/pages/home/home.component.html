@@ -23,34 +23,36 @@
       *ngIf="event"
       class="text-white p-4 mt-3.5 cursor-pointer"
       [ngClass]="
-        event?.event_type === 'Water leak detected' ? 'bg-rouge' : 'bg-gray3'
+        event?.eventDescription === 'Water leak detected' ? 'bg-rouge' : 'bg-gray3'
       "
       (click)="createTplModal(tplContent)"
     >
       <div class="flex items-center gap-3">
         <img src="assets/icons/{{ warnImg }}.svg" alt="" />
         <div>
-          <div class="text-base font-medium">{{ event?.event_type }}</div>
-          <div class="text-sm">{{ event?.date_occurred }}</div>
+          <div class="text-base font-medium">{{ event?.eventDescription }}</div>
+          <div class="text-sm">{{ event?.eventCreatedDate }}</div>
         </div>
       </div>
       <div class="text-sm mt-2">
-        {{ event ? event.floor + "th floor - " + event.position : "" }}
+        {{ event ? event.floor + ' ' + event.position : "" }}
       </div>
     </div>
 
     <!-- address panel -->
     <div class="bg-white p-4 mt-6">
-      <div class="text-22 font-bold">{{ building }}</div>
-      <div class="text-xs text-opacity-50 mt-3">{{ location }}</div>
+      <div class="text-22 font-bold">{{ building.building }}</div>
+      <div class="text-xs text-opacity-50 mt-3">
+        {{ building.buildingAddress }} {{ building.buildingCity }} {{building.buildingState}} {{building.buildingCountry}}
+      </div>
     </div>
 
     <!-- count section -->
     <div class="grid grid-cols-2 gap-3 mt-3">
-      <a routerLink="/devices" class="bg-white p-4">
+      <div class="bg-white p-4">
         <div class="text-sm text-brown font-medium">Equipment</div>
         <div class="text-2xl font-bold mt-2">{{ equipments }}</div>
-      </a>
+      </div>
       <div class="bg-white p-4">
         <div class="text-sm text-brown font-medium">Users</div>
         <div class="text-2xl font-bold mt-2">{{ users }}</div>
@@ -107,8 +109,8 @@
     <ng-template #tplContent>
       <div class="flex justify-between mb-10">
         <div>
-          <div class="text-22 font-bold">{{ event?.event_type }}</div>
-          <div class="text-sm">{{ event.date_occurred }}</div>
+          <div class="text-22 font-bold">{{ event?.eventDescription }}</div>
+          <div class="text-sm">{{ event.eventCreatedDate }}</div>
         </div>
         <button
           (click)="destroyModal()"
@@ -133,11 +135,14 @@
           <div class="w-4">
             <img class="mx-auto" src="assets/icons/clock.svg" alt="" />
           </div>
-          <div>{{ event.date_occurred1 }}</div>
+          <div>{{ event.eventCreatedDate1 }}</div>
         </div>
       </div>
       <div class="w-max mt-3">
-        <div class="flex bg-gray1 rounded-full px-8 py-4 gap-4">
+        <div 
+          class="flex bg-gray1 rounded-full px-8 py-4 gap-4"
+          (click)="goDeviceDetail(event.device_id, event.device_name)"
+        >
           <div class="text-sm">
             Detected by <span class="text-rouge">{{ event.device_name }}</span>
           </div>

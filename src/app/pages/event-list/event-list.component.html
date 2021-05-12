@@ -16,8 +16,8 @@
         <img src="assets/icons/{{ getWarnImg(event, 0) }}.svg" alt="" />
       </div>
       <div>
-        <div class="text-base font-medium">{{ event?.event_type }}</div>
-        <div class="text-sm">{{ event?.date_occurred }}</div>
+        <div class="text-base font-medium">{{ event?.eventDescription }}</div>
+        <div class="text-sm">{{ event?.eventCreatedDate }}</div>
       </div>
       <div class="row-span-2 flex justify-content items-center">
         <img src="assets/icons/right.svg" alt="" />
@@ -39,8 +39,8 @@
             <img src="assets/icons/{{ getWarnImg(evt, 1) }}.svg" alt="" />
           </div>
           <div>
-            <div class="text-sm">{{ evt.event_type }}</div>
-            <div class="text-xs text-opacity-50">{{ evt.date_occurred }}</div>
+            <div class="text-sm">{{ evt.eventDescription }}</div>
+            <div class="text-xs text-opacity-50">{{ evt.eventCreatedDate }}</div>
           </div>
           <div class="row-span-2 flex justify-content items-center">
             <img src="assets/icons/right.svg" alt="" />
@@ -52,8 +52,8 @@
     <ng-template #tplContent let-params>
       <div class="flex justify-between mb-10">
         <div>
-          <div class="text-22 font-bold">{{ params.value?.event_type }}</div>
-          <div class="text-sm">{{ params.value.date_occurred }}</div>
+          <div class="text-22 font-bold">{{ params.value?.eventDescription }}</div>
+          <div class="text-sm">{{ params.value.eventCreatedDate }}</div>
         </div>
         <button
           (click)="destroyModal()"
@@ -82,13 +82,13 @@
           <div class="w-4">
             <img class="mx-auto" src="assets/icons/clock.svg" alt="" />
           </div>
-          <div>{{ params.value.date_occurred1 }}</div>
+          <div>{{ params.value.eventCreatedDate1 }}</div>
         </div>
       </div>
       <div class="w-max mt-3">
         <div 
           class="flex bg-gray1 rounded-full px-8 py-4 gap-4 cursor-pointer"
-          (click)="goDeviceDetail(params.value.id, params.value.device_name)"
+          (click)="goDeviceDetail(params.value.device_id, params.value.device_name)"
         >
           <div class="text-sm">
             Detected by

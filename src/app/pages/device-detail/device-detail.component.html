@@ -46,10 +46,10 @@
       </div>
       <div
         *ngIf="unread"
-        class="mt-6 flex gap-2 justify-center items-center p-3 w-1/2 rounded-full bg-rouge text-lg text-white font-medium"
+        class="mt-6 flex gap-2 justify-center items-center p-3 w-max rounded-full bg-rouge text-lg text-white font-medium"
       >
         <i nz-icon [nzType]="'bell'"></i>
-        <div>{{ events[0].event_type }}</div>
+        <div>{{ events[0].eventDescription }}</div>
       </div>
 
       <div class="mt-9">
@@ -71,8 +71,8 @@
         </div>
         <div *ngIf="bEvent" class="mt-3">
           <div class="event-item py-3.5" *ngFor="let evt of events">
-            <div class="text-base">{{ evt.event_type }}</div>
-            <div class="text-sm">{{ evt.date_occurred }}</div>
+            <div class="text-base">{{ evt.eventDescription }}</div>
+            <div class="text-sm">{{ evt.eventCreatedDate }}</div>
           </div>
         </div>
         <div *ngIf="!bEvent" class="bg-gray2 p-3 text-base mt-3">
