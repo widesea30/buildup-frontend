@@ -27,4 +27,8 @@ export class MainService {
   public getDeviceEvents(id: number) {
     return this.serviceUtils.ApiGET('event/device/' + id);
   }
+
+  public addWebtoken(token: string) {
+    return this.serviceUtils.ApiPOST('auth/addwebtoken/', {token});
+  }
 }
