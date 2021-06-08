@@ -1,6 +1,6 @@
 export const environment = {
   production: true,
-  serverUrl: 'http://buildup.thingsfactory.com/be',
+  serverUrl: 'https://buildup.thingsfactory.com/be',
   firebase: {
     apiKey: "AIzaSyDypfERureopDOX-xIm7n_ZfJZCOfFtv94",
     authDomain: "buildup-7a0db.firebaseapp.com",
