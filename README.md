@@ -13,9 +13,3 @@ Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app w
 ## Build
 
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Deploy to Google App Engine
-
-Make sure app.yaml file exists in the project root directory.
-
-Deploy angular app to google app engine by running `gcloud app deploy`
