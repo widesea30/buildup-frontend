@@ -61,6 +61,7 @@ export class HomeComponent implements OnInit {
 
   createTplModal(tplContent: TemplateRef<{}>): void {
     this.modal.create({
+      nzStyle: {bottom: 0, position: 'absolute', maxWidth: '100vw', marginBottom: 0},
       nzTitle: null,
       nzContent: tplContent,
       nzFooter: null,

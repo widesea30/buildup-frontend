@@ -8,7 +8,7 @@
     <div class="text-22 font-bold mt-2">Active events</div>
     <div
       *ngIf="event"
-      (click)="createTplModal(tplContent, event)"
+      (click)="createTplModal(tplContent, event, false)"
       class="grid gap-x-3 mt-4"
       style="grid-template-columns: max-content auto max-content"
     >
@@ -32,7 +32,7 @@
       <div class="text-sm text-brown">History</div>
       <div *ngFor="let evt of events">
         <div
-          (click)="createTplModal(tplContent, evt)"
+          (click)="createTplModal(tplContent, evt, true)"
           class="grid gap-x-3 py-4 event-item"
         >
           <div class="flex justify-content items-center">
@@ -50,7 +50,7 @@
     </div>
 
     <ng-template #tplContent let-params>
-      <div class="flex justify-between mb-10">
+      <div class="flex justify-between mb-5">
         <div>
           <div class="text-22 font-bold">{{ params.value?.eventDescription }}</div>
           <div class="text-sm">{{ params.value.eventCreatedDate }}</div>
@@ -65,17 +65,14 @@
           <i nz-icon nzType="close"></i>
         </button>
       </div>
-      <div>
+      <div class="h-px w-full"></div>
+      <div class="mt-5">
         <div class="text-sm flex gap-2 items-center">
           <div class="w-4">
             <img class="mx-auto" src="assets/icons/marker.svg" alt="" />
           </div>
-          <div>
-            {{
-              params.value
-                ? params.value.floor + "th floor - " + params.value.position
-                : ""
-            }}
+          <div *ngIf="params.value">
+            {{ params.value.floor }} &nbsp;&#183;&nbsp; {{ params.value.position }}
           </div>
         </div>
         <div class="text-sm flex gap-2 items-center mt-3">
@@ -87,7 +84,7 @@
       </div>
       <div class="w-max mt-3">
         <div 
-          class="flex bg-gray1 rounded-full px-8 py-4 gap-4 cursor-pointer"
+          class="flex bg-gray1 rounded-full px-4 py-2.5 gap-4 cursor-pointer"
           (click)="goDeviceDetail(params.value.device_id, params.value.device_name)"
         >
           <div class="text-sm">

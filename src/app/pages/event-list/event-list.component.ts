@@ -28,7 +28,7 @@ export class EventListComponent implements OnInit {
 
   showInitModal(evt: Event) {
     setTimeout(() => {
-      this.createTplModal(this.tplContent, evt)
+      this.createTplModal(this.tplContent, evt, false)
     }, 1000)
     
   }
@@ -77,8 +77,9 @@ export class EventListComponent implements OnInit {
     return warnImg;
   }
 
-  createTplModal(tplContent: TemplateRef<{}>, evt: Event): void {
+  createTplModal(tplContent: TemplateRef<{}>, evt: Event, read: Boolean): void {
     this.modal.create({
+      nzStyle: {bottom: 0, position: 'absolute', maxWidth: '100vw', marginBottom: 0},
       nzTitle: null,
       nzContent: tplContent,
       nzFooter: null,
@@ -88,6 +89,8 @@ export class EventListComponent implements OnInit {
         value: evt
       }
     });
+
+    if (!read) this.mainService.updateEventRead(evt.id).subscribe((res: any) => {});
   }
 
   destroyModal(): void {
