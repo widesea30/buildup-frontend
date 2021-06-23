@@ -10,3 +10,9 @@
   bottom: 0;
   background-color: #F0F0F0;
 }
+
+::ng-deep .ant-modal-content {
+  border-radius: 12px 12px 0 0;
+  position: absolute;
+  bottom: 0;
+}

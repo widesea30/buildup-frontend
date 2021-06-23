@@ -1,7 +1,7 @@
 <div class="px-4 py-8 w-full">
   <div *ngIf="!search">
     <div class="flex flex-col">
-      <div class="flex justify-between">
+      <div class="flex justify-between items-center">
         <a routerLink=".." class="py-4 pr-4"
           ><img src="assets/icons/Back.svg" alt=""
         /></a>
@@ -13,17 +13,12 @@
             class="bg-rouge bg-opacity-10 text-rouge text-sm font-medium"
             (click)="createTplModal(tplContent)"
           >
-            Filter
+            {{ filterActive? 'Filters active':'Filter' }}
           </button>
-          <button
-            nz-button
-            nzType="link"
-            nzShape="circle"
-            class="bg-rouge bg-opacity-10 text-rouge text-sm font-medium flex justify-center items-center"
-            (click)="openSearch()"
-          >
-            <i nz-icon nzType="search"></i>
-          </button>
+
+          <div class="bg-rouge bg-opacity-10 rounded-full flex justify-center items-center w-8.5 h-8.5 cursor-pointer" (click)="openSearch()">
+            <img src="assets/icons/search-icon.svg" alt="" />
+          </div>
         </div>
       </div>
       <div class="text-22 font-bold mt-2">Devices</div>
@@ -33,35 +28,19 @@
           class="flex items-center text-sm text-black bg-gray1 px-3 py-2 rounded-full"
         >
           <div>{{ dt }}</div>
-          <button
-            nz-button
-            nzType="link"
-            nzShape="circle"
-            class="bg-gray4 text-black flex justify-center items-center"
-            (click)="removeType(dt)"
-          >
-            <i nz-icon nzType="close"></i>
-          </button>
+          <img class="cursor-pointer ml-3" src="assets/icons/close.svg" alt="" (click)="removeType(dt)" />
         </div>
         <div
           *ngFor="let fl of floorFilters"
           class="flex items-center text-sm text-black bg-gray1 px-3 py-2 rounded-full"
         >
           <div>{{ fl + "th floor" }}</div>
-          <button
-            nz-button
-            nzType="link"
-            nzShape="circle"
-            class="bg-gray4 text-black flex justify-center items-center"
-            (click)="floorRemove(fl)"
-          >
-            <i nz-icon nzType="close"></i>
-          </button>
+          <img class="cursor-pointer ml-3" src="assets/icons/close.svg" alt="" (click)="floorRemove(fl)" />
         </div>
       </div>
       <div class="mt-6">
         <div *ngFor="let dev of filteredDevices">
-          <div class="device-item py-3 cursor-pointer" (click)="goDeviceDetail(dev.id, dev.device_name)">
+          <div class="device-item py-4 cursor-pointer" (click)="goDeviceDetail(dev.id, dev.device_name)">
             <div class="flex justify-between items-center mb-0.5">
               <div class="flex items-center gap-2">
                 <div><img src="assets/icons/clog-2.svg" alt="" /></div>
@@ -96,7 +75,7 @@
                 </div>
               </div>
             </div>
-            <div class="text-sm mb-2">{{ dev.device_type }}</div>
+            <div class="text-sm mb-2 opacity-55">{{ dev.device_type }}</div>
             <div class="flex justify-between items-center text-sm">
               <div
                 *ngIf="!dev.radio_status && !dev.battery_status"
@@ -105,10 +84,10 @@
                 <div class="text-sm bg-rouge rounded p-2">Radio low</div>
                 <div class="text-sm bg-rouge rounded p-2">Battery low</div>
               </div>
-              <div *ngIf="dev.radio_status && dev.battery_status">
-                {{ dev.floor + " " + dev.position }}
+              <div *ngIf="dev.radio_status && dev.battery_status" class="opacity-55">
+                {{ dev.floor }} &nbsp;&#183;&nbsp; {{ dev.position }}
               </div>
-              <div>{{ dev.date_updated }}</div>
+              <div class="opacity-55 text-xs">{{ dev.date_updated }}</div>
             </div>
           </div>
         </div>
@@ -117,15 +96,9 @@
     <ng-template #tplContent>
       <div class="flex justify-between mb-10">
         <div class="text-22 font-bold">Filter</div>
-        <button
-          (click)="destroyModal()"
-          nz-button
-          nzType="link"
-          nzShape="circle"
-          class="bg-gray4 text-black flex justify-center items-center"
-        >
-          <i nz-icon nzType="close"></i>
-        </button>
+        <div class="bg-gray4 text-black rounded-full flex justify-center items-center w-7.5 h-7.5 cursor-pointer" (click)="destroyModal()">
+          <img src="assets/icons/close.svg" alt="" />
+        </div>
       </div>
 
       <div class="text-base font-semibold mt-8">Show only</div>
@@ -151,12 +124,8 @@
       <div class="text-base font-semibold mt-8">Select floors</div>
       <div class="grid grid-cols-7 gap-2 mt-3">
         <div *ngFor="let fl of [8, 9, 10, 11]">
-          <button
-            type="button"
-            nz-button
-            nzType="link"
-            nzShape="circle"
-            class="text-sm px-2 hover:text-opacity-80"
+          <div 
+            class="text-sm w-9.5 h-9.5 rounded-full flex justify-center items-center hover:opacity-80"
             (click)="selectFloor(fl)"
             [ngClass]="
               floorFilters.includes(fl)
@@ -164,18 +133,14 @@
                 : 'text-black bg-gray1'
             "
           >
-            {{ fl }}
-          </button>
+            <div [ngClass]="floorFilters.includes(fl)? 'opacity-100' : 'opacity-40'">{{ fl }}</div>
+          </div>
         </div>
       </div>
-      <div class="grid grid-cols-7 mt-3">
+      <div class="grid grid-cols-7 gap-2 mt-3">
         <div *ngFor="let fl of [1, 2, 3, 4, 5, 6, 7]">
-          <button
-            type="button"
-            nz-button
-            nzType="link"
-            nzShape="circle"
-            class="text-sm px-2 hover:text-opacity-80"
+          <div 
+            class="text-sm w-9.5 h-9.5 rounded-full flex justify-center items-center hover:opacity-80"
             (click)="selectFloor(fl)"
             [ngClass]="
               floorFilters.includes(fl)
@@ -183,18 +148,14 @@
                 : 'text-black bg-gray1'
             "
           >
-            {{ fl }}
-          </button>
+            <div [ngClass]="floorFilters.includes(fl)? 'opacity-100' : 'opacity-40'">{{ fl }}</div>
+          </div>
         </div>
       </div>
-      <div class="grid grid-cols-7 mt-3">
+      <div class="grid grid-cols-7 gap-2 mt-3">
         <div *ngFor="let fl of [-1]">
-          <button
-            type="button"
-            nz-button
-            nzType="link"
-            nzShape="circle"
-            class="text-sm px-2 hover:text-opacity-80"
+          <div 
+            class="text-sm w-9.5 h-9.5 rounded-full flex justify-center items-center hover:opacity-80"
             (click)="selectFloor(fl)"
             [ngClass]="
               floorFilters.includes(fl)
@@ -202,8 +163,8 @@
                 : 'text-black bg-gray1'
             "
           >
-            {{ fl }}
-          </button>
+            <div [ngClass]="floorFilters.includes(fl)? 'opacity-100' : 'opacity-40'">{{ fl }}</div>
+          </div>
         </div>
       </div>
 
@@ -228,15 +189,9 @@
   <!-- Search panel -->
   <div *ngIf="search" class="w-full">
     <div class="relative w-full text-center text-lg font-semibold">
-      <button
-        nz-button
-        nzType="link"
-        nzShape="circle"
-        class="absolute left-0 bg-gray4 text-black flex justify-center items-center"
-        (click)="search = false"
-      >
-        <i nz-icon nzType="close"></i>
-      </button>
+      <div class="bg-gray4 text-black rounded-full flex justify-center items-center w-7.5 h-7.5 cursor-pointer" (click)="search = false">
+        <img src="assets/icons/close.svg" alt="" />
+      </div>
       Search devices
     </div>
     <input
@@ -254,7 +209,7 @@
         No results
       </div>
       <div *ngFor="let dev of searchedDevices">
-        <div class="device-item py-3 cursor-pointer" (click)="goDeviceDetail(dev.id, dev.device_name)">
+        <div class="device-item py-4 cursor-pointer" (click)="goDeviceDetail(dev.id, dev.device_name)">
           <div class="flex justify-between items-center mb-0.5">
             <div class="flex items-center gap-2">
               <div><img src="assets/icons/clog-2.svg" alt="" /></div>
@@ -289,8 +244,8 @@
               </div>
             </div>
           </div>
-          <div class="text-sm mb-2">{{ dev.device_type }}</div>
-          <div class="flex justify-between items-center text-sm">
+          <div class="text-sm mb-2 opacity-55">{{ dev.device_type }}</div>
+          <div class="flex justify-between items-center text-sm opacity-55">
             <div
               *ngIf="!dev.radio_status && !dev.battery_status"
               class="flex gap-2 text-white"
@@ -298,10 +253,10 @@
               <div class="text-sm bg-rouge rounded p-2">Radio low</div>
               <div class="text-sm bg-rouge rounded p-2">Battery low</div>
             </div>
-            <div *ngIf="dev.radio_status && dev.battery_status">
-              {{ dev.floor + "th - " + dev.position }}
+            <div *ngIf="dev.radio_status && dev.battery_status" class="opacity-55">
+              {{ dev.floor }} &nbsp;&#183;&nbsp; {{ dev.position }}
             </div>
-            <div>{{ dev.date_updated }}</div>
+            <div class="opacity-55 text-xs">{{ dev.date_updated }}</div>
           </div>
         </div>
       </div>

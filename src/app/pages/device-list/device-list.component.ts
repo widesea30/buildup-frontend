@@ -24,6 +24,8 @@ export class DeviceListComponent implements OnInit {
   floorFilters = [];
   filteredDevices: Array<Device> = [];
 
+  filterActive = false;
+
   constructor(private mainService: MainService, private modal: NzModalService, private router: Router) { }
 
   ngOnInit(): void {
@@ -64,6 +66,7 @@ export class DeviceListComponent implements OnInit {
 
   createTplModal(tplContent: TemplateRef<{}>): void {
     this.modal.create({
+      nzStyle: {bottom: 0, position: 'absolute', maxWidth: '100vw', marginBottom: 0},
       nzTitle: null,
       nzContent: tplContent,
       nzFooter: null,
@@ -119,8 +122,10 @@ export class DeviceListComponent implements OnInit {
   }
 
   filterDevices() {
-    if (this.deviceFilters.length == 0 && this.floorFilters.length == 0) this.filteredDevices = this.devices;
-    else 
+    if (this.deviceFilters.length == 0 && this.floorFilters.length == 0) {
+      this.filteredDevices = this.devices;
+      this.filterActive = false;
+    } else {
       this.filteredDevices = this.devices.filter(el => {
         let res = false;
         this.deviceFilters.forEach(element => {
@@ -131,6 +136,8 @@ export class DeviceListComponent implements OnInit {
         });
         return res;
       });
+      this.filterActive = true;
+    }
   }
 
   goDeviceDetail(id, name) {
