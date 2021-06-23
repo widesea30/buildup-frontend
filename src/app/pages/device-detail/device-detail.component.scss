@@ -10,3 +10,17 @@
   bottom: 0;
   background-color: #F0F0F0;
 }
+
+.tab-item {
+  position: relative;
+}
+
+.tab-item::before {
+  position: absolute;
+  content: "";
+  width: 100%;
+  height: 3px;
+  bottom: 0;
+  background-color: #FF0018;
+  border-radius: 20px;
+}

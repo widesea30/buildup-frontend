@@ -5,30 +5,26 @@
         <a routerLink="/devices" class="py-4 pr-4"
           ><img src="assets/icons/Back.svg" alt=""
         /></a>
-        <div class="text-sm font-medium">{{ device?.device_type }}</div>
+        <div class="text-sm font-medium text-brown">{{ device?.device_type }}</div>
       </div>
       <div class="flex justify-between items-center mt-2">
         <div class="text-22 font-bold">{{ device_name }}</div>
         <div *ngIf="!loading" class="flex gap-2 items-center">
           <div
-            class="flex gap-1 items-center rounded-full px-2 py-1"
-            [ngClass]="device && device.radio_status ? 'bg-green1' : 'bg-rouge'"
+            class="flex gap-1 items-center px-2 py-1"
+            [ngClass]="device && device.radio_status ? 'text-black bg-green1 bg-opacity-70 rounded-full' : 'bg-rouge text-white'"
           >
             <div class="text-xs font-medium">Radio</div>
             <i *ngIf="device && device.radio_status" nz-icon nzType="check"></i>
+            <img *ngIf="device && !device.radio_status" src="assets/icons/exclamation-circle.svg" alt="" />
           </div>
           <div
-            class="flex gap-1 items-center rounded-full px-2 py-1"
-            [ngClass]="
-              device && device.battery_status ? 'bg-green1' : 'bg-rouge'
-            "
+            class="flex gap-1 items-center px-2 py-1"
+            [ngClass]="device && device.battery_status ? 'text-black bg-green1 bg-opacity-70 rounded-full' : 'bg-rouge text-white'"
           >
             <div class="text-xs font-medium">Batt</div>
-            <i
-              *ngIf="device && device.battery_status"
-              nz-icon
-              nzType="check"
-            ></i>
+            <i *ngIf="device && device.battery_status" nz-icon nzType="check"></i>
+            <img *ngIf="device && !device.battery_status" src="assets/icons/exclamation-circle.svg" alt="" />
           </div>
         </div>
       </div>
@@ -39,7 +35,7 @@
 
       <div
         *ngIf="!unread"
-        class="mt-6 flex gap-2 justify-center items-center p-3 w-2/5 rounded-full bg-green1 text-lg text-black font-medium"
+        class="mt-6 flex gap-2 justify-center items-center p-2 w-max rounded-full bg-green1 bg-opacity-70 text-lg text-black font-medium"
       >
         <img src="assets/icons/smile.svg" alt="" />
         <div>All good</div>
@@ -53,17 +49,17 @@
       </div>
 
       <div class="mt-9">
-        <div class="flex gap-8 text-22 font-medium border-b border-color-gray4">
+        <div class="flex text-base text-brown font-medium border-b border-color-gray4">
           <div
-            class="cursor-pointer"
-            [ngClass]="bEvent ? 'text-rouge border-rouge border-b-4' : ''"
+            class="cursor-pointer mr-8"
+            [ngClass]="bEvent ? 'text-rouge pb-2 tab-item' : ''"
             (click)="bEvent=true"
           >
             Events
           </div>
           <div
             class="cursor-pointer"
-            [ngClass]="!bEvent ? 'text-rouge border-rouge border-b-4' : ''"
+            [ngClass]="!bEvent ? 'text-rouge pb-2 tab-item' : ''"
             (click)="bEvent=false"
           >
             Automation
@@ -75,7 +71,7 @@
             <div class="text-sm">{{ evt.eventCreatedDate }}</div>
           </div>
         </div>
-        <div *ngIf="!bEvent" class="bg-gray2 p-3 text-base mt-3">
+        <div *ngIf="!bEvent" class="bg-gray2 p-4 text-base rounded-10 mt-3">
           <div class="flex items-center gap-1">
             <i nz-icon nzType="arrow-left"></i> When a water leak is detected
           </div>

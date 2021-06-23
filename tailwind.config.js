@@ -31,6 +31,9 @@ module.exports = {
       },
       textOpacity: {
         '55': '0.55',
+      },
+      borderRadius: {
+        '10': '10px',
       }
     },
   },
