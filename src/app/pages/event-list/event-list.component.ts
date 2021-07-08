@@ -16,6 +16,8 @@ export class EventListComponent implements OnInit {
   events: Array<Event> = [];
   event: Event = null;
 
+  event_type = Event_type;
+  
   loading = false;
   
   @ViewChild('tplContent') private tplContent: TemplateRef<any>;

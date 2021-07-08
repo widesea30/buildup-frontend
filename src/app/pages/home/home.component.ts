@@ -17,6 +17,8 @@ export class HomeComponent implements OnInit {
   building: any;
   event:Event = null;
 
+  event_type = Event_type;
+  
   warnImg = '';
 
   loading = false;

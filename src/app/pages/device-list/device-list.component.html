@@ -48,26 +48,26 @@
               </div>
               <div class="flex gap-1">
                 <div class="flex items-center">
-                  <div>R</div>
+                  <div [ngClass]="{'text-rouge':dev.radio_status==0}">R</div>
                   <div
                     class="flex justify-center items-center rounded-full w-3 h-3 ml-0.5"
-                    [ngClass]="dev.radio_status ? 'bg-green1' : 'bg-rouge'"
+                    [ngClass]="dev.radio_status>-1 ? (dev.radio_status==1?'bg-green1' : 'bg-rouge'):'bg-gray3'"
                   >
                     <img
-                      *ngIf="dev.radio_status"
+                      *ngIf="dev.radio_status==1"
                       src="assets/icons/check.svg"
                       alt=""
                     />
                   </div>
                 </div>
                 <div class="flex items-center">
-                  <div>B</div>
+                  <div [ngClass]="{'text-rouge':dev.battery_status==0}">B</div>
                   <div
                     class="flex justify-center items-center rounded-full w-3 h-3 ml-0.5"
-                    [ngClass]="dev.battery_status ? 'bg-green1' : 'bg-rouge'"
+                    [ngClass]="dev.battery_status>-1 ? (dev.battery_status==1?'bg-green1' : 'bg-rouge'):'bg-gray3'"
                   >
                     <img
-                      *ngIf="dev.battery_status"
+                      *ngIf="dev.battery_status==1"
                       src="assets/icons/check.svg"
                       alt=""
                     />
@@ -217,26 +217,26 @@
             </div>
             <div class="flex gap-1">
               <div class="flex items-center">
-                <div>R</div>
+                <div [ngClass]="{'text-rouge':dev.radio_status==0}">R</div>
                 <div
                   class="flex justify-center items-center rounded-full w-3 h-3 ml-0.5"
-                  [ngClass]="dev.radio_status ? 'bg-green1' : 'bg-rouge'"
+                  [ngClass]="dev.radio_status>-1 ? (dev.radio_status==1?'bg-green1' : 'bg-rouge'):'bg-gray3'"
                 >
                   <img
-                    *ngIf="dev.radio_status"
+                    *ngIf="dev.radio_status==1"
                     src="assets/icons/check.svg"
                     alt=""
                   />
                 </div>
               </div>
               <div class="flex items-center">
-                <div>B</div>
+                <div [ngClass]="{'text-rouge':dev.battery_status==0}">B</div>
                 <div
                   class="flex justify-center items-center rounded-full w-3 h-3 ml-0.5"
-                  [ngClass]="dev.battery_status ? 'bg-green1' : 'bg-rouge'"
+                  [ngClass]="dev.battery_status>-1 ? (dev.battery_status==1?'bg-green1' : 'bg-rouge'):'bg-gray3'"
                 >
                   <img
-                    *ngIf="dev.battery_status"
+                    *ngIf="dev.battery_status==1"
                     src="assets/icons/check.svg"
                     alt=""
                   />

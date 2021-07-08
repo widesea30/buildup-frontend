@@ -2,8 +2,8 @@ export interface Device {
   id: number;
   device_name: string;
   device_type: string;
-  radio_status: boolean;
-  battery_status: boolean;
+  radio_status: number;
+  battery_status: number;
   date_updated: string;
   floorName: number;
   floor: string;

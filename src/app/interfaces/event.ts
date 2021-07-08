@@ -14,5 +14,6 @@ export interface Event {
 export const Event_type = {
   clog_warn: 'Clog Warning',
   water_leak: 'Water leak detected',
-  low_battery: 'Low battery'
+  low_battery: 'Low Battery',
+  low_radio: 'Low Radio',
 }

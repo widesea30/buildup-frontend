@@ -116,13 +116,14 @@
           (click)="goDeviceDetail(event.device_id, event.device_name)"
         >
           <div class="text-sm">
-            Detected by <span class="text-rouge">{{ event.device_name }}</span>
+            {{!event.eventDescription==event_type.low_battery || !event.eventDescription==event_type.low_radio? 'Detected by ' : ''}}
+            <span class="text-rouge">{{ event.device_name }}</span>
           </div>
           <img src="assets/icons/right.svg" alt="" />
         </div>
       </div>
-      <div class="text-sm font-semibold mt-8">Suggested action</div>
-      <div class="text-sm mt-3">
+      <div *ngIf="!event.eventDescription==event_type.low_battery || !event.eventDescription==event_type.low_radio" class="text-sm font-semibold mt-8">Suggested action</div>
+      <div *ngIf="!event.eventDescription==event_type.low_battery || !event.eventDescription==event_type.low_radio" class="text-sm mt-3">
         Check the area for any water damage and notify your supervisor. The
         water valve should be open only after the water leak has been fixed.
       </div>

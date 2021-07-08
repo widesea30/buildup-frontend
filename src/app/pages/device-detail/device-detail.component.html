@@ -12,19 +12,19 @@
         <div *ngIf="!loading" class="flex gap-2 items-center">
           <div
             class="flex gap-1 items-center px-2 py-1"
-            [ngClass]="device && device.radio_status ? 'text-black bg-green1 bg-opacity-70 rounded-full' : 'bg-rouge text-white'"
+            [ngClass]="device && device.radio_status==1 ? 'text-black bg-green1 bg-opacity-70 rounded-full' : (device.radio_status==0?'bg-rouge text-white':'bg-gray3 text-white')"
           >
             <div class="text-xs font-medium">Radio</div>
-            <i *ngIf="device && device.radio_status" nz-icon nzType="check"></i>
-            <img *ngIf="device && !device.radio_status" src="assets/icons/exclamation-circle.svg" alt="" />
+            <i *ngIf="device && device.radio_status==1" nz-icon nzType="check"></i>
+            <img *ngIf="device && device.radio_status==0" src="assets/icons/exclamation-circle.svg" alt="" />
           </div>
           <div
             class="flex gap-1 items-center px-2 py-1"
-            [ngClass]="device && device.battery_status ? 'text-black bg-green1 bg-opacity-70 rounded-full' : 'bg-rouge text-white'"
+            [ngClass]="device && device.battery_status==1 ? 'text-black bg-green1 bg-opacity-70 rounded-full' : (device.battery_status==0?'bg-rouge text-white':'bg-gray3 text-white')"
           >
             <div class="text-xs font-medium">Batt</div>
-            <i *ngIf="device && device.battery_status" nz-icon nzType="check"></i>
-            <img *ngIf="device && !device.battery_status" src="assets/icons/exclamation-circle.svg" alt="" />
+            <i *ngIf="device && device.battery_status==1" nz-icon nzType="check"></i>
+            <img *ngIf="device && device.battery_status==0" src="assets/icons/exclamation-circle.svg" alt="" />
           </div>
         </div>
       </div>
