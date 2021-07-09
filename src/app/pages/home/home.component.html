@@ -44,8 +44,9 @@
 
     <!-- address panel -->
     <div class="bg-white p-4 rounded-xl mt-6">
-      <div class="text-22 text-black font-bold">{{ building.building }}</div>
-      <div class="text-xs opacity-50 mt-3">
+      <div *ngIf="!building" class="text-22 text-black font-bold">No building exists</div>
+      <div *ngIf="building" class="text-22 text-black font-bold">{{ building.building }}</div>
+      <div *ngIf="building" class="text-xs opacity-50 mt-3">
         {{ building.buildingAddress }} {{ building.buildingCity }} {{building.buildingState}} {{building.buildingCountry}}
       </div>
     </div>
