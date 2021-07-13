@@ -10,10 +10,17 @@ import { HomeComponent } from './home/home.component';
 import { EventListComponent } from './event-list/event-list.component';
 import { DeviceListComponent } from './device-list/device-list.component';
 import { DeviceDetailComponent } from './device-detail/device-detail.component';
+import { ToggleButtonComponent } from './components/toggle-button.component';
 
 
 @NgModule({
-  declarations: [HomeComponent, EventListComponent, DeviceListComponent, DeviceDetailComponent],
+  declarations: [
+    HomeComponent, 
+    EventListComponent, 
+    DeviceListComponent, 
+    DeviceDetailComponent, 
+    ToggleButtonComponent
+  ],
   imports: [
     CommonModule,
     PagesRoutingModule,

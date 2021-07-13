@@ -35,4 +35,8 @@ export class MainService {
   public getDeviceInfo(device_id: number) {
     return this.serviceUtils.ApiPOST('device/get_device_detail/', {device_id});
   }
+
+  public handleValve(device_id: number, command: string) {
+    return this.serviceUtils.ApiPOST('device/handle_valve/', {device_id, command});
+  }
 }

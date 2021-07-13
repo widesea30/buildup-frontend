@@ -21,6 +21,8 @@ export class DeviceDetailComponent implements OnInit {
 
   tabNum: number = 0;
 
+  valve_open = false;
+
   constructor(private mainService: MainService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
@@ -51,4 +53,11 @@ export class DeviceDetailComponent implements OnInit {
     }, (err: any) => { this.loading = false; });
   }
 
+  onChnageValve($event) {
+    this.valve_open = $event;    
+    let command = this.valve_open? 'OPEN':'CLOSE';
+
+    this.mainService.handleValve(this.device_id, command).subscribe((res: any) => {
+    }, (err: any) => { });
+  }
 }

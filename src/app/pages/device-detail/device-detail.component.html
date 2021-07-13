@@ -30,10 +30,16 @@
       </div>
 
       <div *ngIf="device" class="text-sm text-brown font-medium mt-1">
-        {{ device.floor + "th - " + device.position }}
+        {{ device.floor }} &nbsp;&#183;&nbsp; {{ device.position }}
+      </div>
+      <div class="flex justify-between items-center rounded-full mt-6 bg-gray4 py-1 pl-3 pr-1" style="width: 121px;">
+        <div class="text-base">{{ valve_open? 'Open':'Closed' }}</div>
+        <div style="width: 44px;">
+          <toggle-button input_id="value_toggle" (changed)="onChnageValve($event)"></toggle-button>
+        </div>
       </div>
 
-      <div
+      <!-- <div
         *ngIf="!unread"
         class="mt-6 flex gap-2 justify-center items-center p-2 w-max rounded-full bg-green1 bg-opacity-70 text-lg text-black font-medium"
       >
@@ -46,7 +52,7 @@
       >
         <i nz-icon [nzType]="'bell'"></i>
         <div>{{ events[0].eventDescription }}</div>
-      </div>
+      </div> -->
 
       <div *ngIf="device_info" class="mt-9">
         <div class="flex text-base text-brown font-medium border-b border-color-gray4">
