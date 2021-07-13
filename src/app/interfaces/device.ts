@@ -11,4 +11,20 @@ export interface Device {
   date_added: string;
 }
 
+export interface DeviceInfo {
+  id: number;
+  devEUI: string;
+  buildingFloorArea: string;
+  deviceMACAddress: string;
+  deviceApplicationKey: string;
+  deviceGatewayEUI: string;
+  deviceSerialNumber: string;
+  deviceAssetNumber: string;
+  deviceLatitude: number;
+  deviceLongitude: number;
+  deviceAltitude: number;
+  devicePicture: string;
+  deviceModel: string;
+}
+
 export const Device_Types = [ 'Clog Detector', 'Water Detector Industrial', 'Water Detector'];

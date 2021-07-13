@@ -31,4 +31,8 @@ export class MainService {
   public addWebtoken(token: string) {
     return this.serviceUtils.ApiPOST('auth/addwebtoken/', {token});
   }
+
+  public getDeviceInfo(device_id: number) {
+    return this.serviceUtils.ApiPOST('device/get_device_detail/', {device_id});
+  }
 }

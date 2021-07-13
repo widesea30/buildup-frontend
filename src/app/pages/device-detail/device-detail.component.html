@@ -52,26 +52,128 @@
         <div class="flex text-base text-brown font-medium border-b border-color-gray4">
           <div
             class="cursor-pointer mr-8"
-            [ngClass]="bEvent ? 'text-rouge pb-2 tab-item' : ''"
-            (click)="bEvent=true"
+            [ngClass]="tabNum===0 ? 'text-rouge pb-2 tab-item' : ''"
+            (click)="tabNum=0"
+          >
+            Info
+          </div>
+          <div
+            class="cursor-pointer mr-8"
+            [ngClass]="tabNum===1 ? 'text-rouge pb-2 tab-item' : ''"
+            (click)="tabNum=1"
           >
             Events
           </div>
           <div
-            class="cursor-pointer"
-            [ngClass]="!bEvent ? 'text-rouge pb-2 tab-item' : ''"
-            (click)="bEvent=false"
+            class="cursor-pointer mr-6"
+            [ngClass]="tabNum===2 ? 'text-rouge pb-2 tab-item' : ''"
+            (click)="tabNum=2"
           >
             Automation
           </div>
+          <div
+            class="cursor-pointer"
+            [ngClass]="tabNum===3 ? 'text-rouge pb-2 tab-item' : ''"
+            (click)="tabNum=3"
+          >
+            Relationship
+          </div>
         </div>
-        <div *ngIf="bEvent" class="mt-3">
+        <div *ngIf="tabNum===0" class="mt-3">
+          <div class="rounded bg-gray2 px-3.5 py-2.5 mt-7">
+            <div class="text-xs opacity-50 mb-1">DEV EUI</div>
+            <div class="text-base gray-45 w-full bg-gray2">
+              {{ device_info.devEUI }}
+            </div>
+          </div>
+      
+          <div class="rounded bg-gray2 px-3.5 py-2.5 mt-7">
+            <div class="text-xs opacity-50 mb-1">Area</div>
+            <div class="text-base gray-45 w-full bg-gray2">
+              {{ device_info.buildingFloorArea }}
+            </div>
+          </div>
+      
+          <div class="rounded bg-gray2 px-3.5 py-2.5 mt-7">
+            <div class="text-xs opacity-50 mb-1">MAC</div>
+            <div class="text-base gray-45 w-full bg-gray2">
+              {{ device_info.deviceMACAddress? device_info.deviceMACAddress:'-' }}
+            </div>
+          </div>
+      
+          <div class="rounded bg-gray2 px-3.5 py-2.5 mt-7">
+            <div class="text-xs opacity-50 mb-1">Dev APPKEY</div>
+            <div class="text-base gray-45 w-full bg-gray2">
+              {{ device_info.deviceApplicationKey? device_info.deviceApplicationKey:'-' }}
+            </div>
+          </div>
+      
+          <div class="rounded bg-gray2 px-3.5 py-2.5 mt-7">
+            <div class="text-xs opacity-50 mb-1">Model</div>
+            <div class="text-base gray-45 w-full bg-gray2">
+              {{ device_info.deviceModel? device_info.deviceModel:'-' }}
+            </div>
+          </div>
+      
+          <div class="rounded bg-gray2 px-3.5 py-2.5 mt-7">
+            <div class="text-xs opacity-50 mb-1">Gateway EUI</div>
+            <div class="text-base gray-45 w-full bg-gray2">
+              {{ device_info.deviceGatewayEUI? device_info.deviceGatewayEUI:'-' }}
+            </div>
+          </div>
+      
+          <div class="rounded bg-gray2 px-3.5 py-2.5 mt-7">
+            <div class="text-xs opacity-50 mb-1">Serial NUmber</div>
+            <div class="text-base gray-45 w-full bg-gray2">
+              {{ device_info.deviceSerialNumber? device_info.deviceSerialNumber:'-' }}
+            </div>
+          </div>
+      
+          <div class="rounded bg-gray2 px-3.5 py-4 mt-7">
+            <div class="flex justify-between items-center">
+              <div class="text-sm opacity-50 mb-1">Location</div>
+            </div>
+            <div class="mt-5">
+              <div class="text-xs opacity-50 mb-1">Lat</div>
+              <div class="text-base gray-45 w-full bg-gray2">
+                {{ device_info.deviceLatitude? device_info.deviceLatitude:'-' }}
+              </div>
+            </div>
+            <div class="mt-5">
+              <div class="text-xs opacity-50 mb-1">Lon</div>
+              <div class="text-base gray-45 w-full bg-gray2">
+                {{ device_info.deviceLongitude? device_info.deviceLongitude:'-' }}
+              </div>
+            </div>
+            <div class="mt-5">
+              <div class="text-xs opacity-50 mb-1">Alt</div>
+              <div class="text-base gray-45 w-full bg-gray2">
+                {{ device_info.deviceAltitude? device_info.deviceAltitude:'-' }}
+              </div>
+            </div>
+          </div>
+          
+          <div class="rounded bg-gray2 px-3.5 py-2.5 mt-7">
+            <div class="text-xs opacity-50 mb-1">Asset Number</div>
+            <div class="text-base gray-45 w-full bg-gray2">
+              {{ device_info.deviceAssetNumber? device_info.deviceAssetNumber:'-' }}
+            </div>
+          </div>
+
+          <div class="rounded bg-gray2 px-3.5 py-4 mt-7">
+            <div class="flex justify-between items-center">
+              <div class="text-sm opacity-50 mb-1">Picture</div>
+            </div>
+            <img class="mt-5 w-full" [src]="device_info.devicePicture" alt=""/>
+          </div>
+        </div>
+        <div *ngIf="tabNum===1" class="mt-3">
           <div class="event-item py-3.5" *ngFor="let evt of events">
             <div class="text-base">{{ evt.eventDescription }}</div>
             <div class="text-sm">{{ evt.eventCreatedDate }}</div>
           </div>
         </div>
-        <div *ngIf="!bEvent" class="bg-gray2 p-4 text-base rounded-10 mt-3">
+        <div *ngIf="tabNum===2" class="bg-gray2 p-4 text-base rounded-10 mt-3">
           <div class="flex items-center gap-1">
             <i nz-icon nzType="arrow-left"></i> When a water leak is detected
           </div>

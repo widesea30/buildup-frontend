@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { MainService } from '../../services/main/main.service';
-import { Device } from '../../interfaces/device';
+import { Device, DeviceInfo } from '../../interfaces/device';
 import { getTimeString } from '../../core/helpers/helper';
 
 @Component({
@@ -13,11 +13,13 @@ export class DeviceDetailComponent implements OnInit {
   device_id: number;
   device_name: string;
   device: Device = null;
+  device_info: DeviceInfo = null;
+
   unread: boolean = false;
   events = [];
   loading = false;
 
-  bEvent = true;
+  tabNum: number = 0;
 
   constructor(private mainService: MainService, private route: ActivatedRoute) { }
 
@@ -34,6 +36,8 @@ export class DeviceDetailComponent implements OnInit {
         this.device = res.device;
         this.device.date_updated = getTimeString(this.device.date_updated);
         this.device.date_added = getTimeString(this.device.date_added);
+
+        this.device_info = res.device_info;
 
         this.unread = res.unread;
 
