@@ -19,6 +19,8 @@ export interface DeviceInfo {
   deviceApplicationKey: string;
   deviceGatewayEUI: string;
   deviceSerialNumber: string;
+  deviceBattery: number;
+  deviceRadio: number;
   deviceAssetNumber: string;
   deviceLatitude: number;
   deviceLongitude: number;

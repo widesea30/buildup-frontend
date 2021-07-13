@@ -48,7 +48,7 @@
         <div>{{ events[0].eventDescription }}</div>
       </div>
 
-      <div class="mt-9">
+      <div *ngIf="device_info" class="mt-9">
         <div class="flex text-base text-brown font-medium border-b border-color-gray4">
           <div
             class="cursor-pointer mr-8"
@@ -126,6 +126,20 @@
             <div class="text-xs opacity-50 mb-1">Serial NUmber</div>
             <div class="text-base gray-45 w-full bg-gray2">
               {{ device_info.deviceSerialNumber? device_info.deviceSerialNumber:'-' }}
+            </div>
+          </div>
+
+          <div class="rounded bg-gray2 px-3.5 py-2.5 mt-7">
+            <div class="text-xs opacity-50 mb-1">Power</div>
+            <div class="text-base gray-45 w-full bg-gray2">
+              {{ device_info.deviceBattery===1? 'Good': (device_info.deviceBattery===0?'Low':'-') }}
+            </div>
+          </div>
+
+          <div class="rounded bg-gray2 px-3.5 py-2.5 mt-7">
+            <div class="text-xs opacity-50 mb-1">Radio</div>
+            <div class="text-base gray-45 w-full bg-gray2">
+              {{ device_info.deviceRadio===1? 'Good': (device_info.deviceRadio===0?'Low':'-') }}
             </div>
           </div>
       
