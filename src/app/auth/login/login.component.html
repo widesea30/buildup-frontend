@@ -1,6 +1,6 @@
-<div class="px-4 pt-12 pb-4 w-full h-screen overflow-hidden">
+<div class="px-4 pt-16 pb-4 w-full h-screen overflow-hidden">
   <div class="relative flex flex-col h-full">
-    <div class="text-22 font-bold mb-8">Sign in to BuildUp</div>
+    <div class="text-22 font-bold mb-8 mt-2">Sign in to BuildUp</div>
     <div *ngIf="hasError" class="text-rouge">Email or password is incorrect!</div>
     <form nz-form name="loginForm" [formGroup]="loginForm" (ngSubmit)="onSubmit()" novalidate class="flex flex-col justify-center">
       <nz-form-item class="mb-5">
@@ -25,7 +25,7 @@
       </nz-form-item>
       
       <div class="mt-8">
-        <a href="#" class="text-sm text-rouge font-semibold py-4">Forgot password?</a>
+        <a routerLink="/auth/forgot-password" class="text-sm text-rouge font-semibold py-4">Forgot password?</a>
       </div>
 
       <div class="absolute bottom-4 w-full">

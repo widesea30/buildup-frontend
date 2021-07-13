@@ -7,10 +7,12 @@ import { NzFormModule } from 'ng-zorro-antd/form';
 
 import { AuthRoutingModule } from './auth-routing.module';
 import { LoginComponent } from './login/login.component';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+import { PasswordResetComponent } from './password-reset/password-reset.component';
 
 
 @NgModule({
-  declarations: [LoginComponent],
+  declarations: [LoginComponent, ForgotPasswordComponent, PasswordResetComponent],
   imports: [
     CommonModule,
     ReactiveFormsModule,

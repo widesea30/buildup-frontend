@@ -61,6 +61,54 @@ export class AuthService {
     else return null;
   }
 
+  public resetPassword(email) {
+    const url = `${this.serverUrl}` + '/auth/password-reset/';
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+      })
+    };
+
+    return this.http.post(url, { email }, httpOptions)
+      .pipe(
+        tap((res: any) => {
+          return res
+        })
+      );
+  }
+
+  public verifyResetToken(token) {
+    const url = `${this.serverUrl}` + '/auth/password-reset/validate_token/';
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+      })
+    };
+
+    return this.http.post(url, { token }, httpOptions)
+      .pipe(
+        tap((res: any) => {
+          return res
+        })
+      );
+  }
+
+  public resetConfirmPassword(password, token) {
+    const url = `${this.serverUrl}` + '/auth/password-reset/confirm/';
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+      })
+    };
+
+    return this.http.post(url, { password, token }, httpOptions)
+      .pipe(
+        tap((res: any) => {
+          return res
+        })
+      );
+  }
+
   public updatePassword(old_password, new_password, email) {
     const url = `${this.serverUrl}` + 'auth/set/password/';
     const httpOptions = {
