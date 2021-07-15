@@ -11,8 +11,19 @@
   background-color: #F0F0F0;
 }
 
+@media screen and (max-width:640px) {
+  ::ng-deep .ant-modal-content {
+    border-radius: 12px 12px 0 0 !important;
+    position: absolute;
+    height: max-content !important;
+    bottom: 0;
+    width: 100vw !important;
+  }
+}
 ::ng-deep .ant-modal-content {
-  border-radius: 12px 12px 0 0;
+  border-radius: 0;
   position: absolute;
+  height: 100%;
   bottom: 0;
+  width: 65vw;
 }

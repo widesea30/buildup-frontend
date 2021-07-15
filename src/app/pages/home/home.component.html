@@ -1,4 +1,4 @@
-<div class="px-4 py-8 w-full h-screen" [ngClass]="showUpdate? 'bg-white' : 'bg-gray2'">
+<div class="px-4 py-8 sm:px-12.5 w-full h-screen" [ngClass]="showUpdate? 'bg-white' : 'bg-gray2'">
   <div *ngIf="loading" class="w-full h-full relative">
     <img
       class="absolute top-1/2 left-1/2 transform -translate-y-2/4 -translate-x-2/4 w-24 h-24"
@@ -9,10 +9,10 @@
   <div *ngIf="!loading" class="relative h-full">
     <div class="flex justify-between items-center">
       <div>
-        <img src="assets/icons/thingsfactory-logo.svg" alt="" />
-        <div class="text-sm font-semibold mt-2">BuildUp!</div>
+        <img class="block sm:hidden" src="assets/icons/thingsfactory-logo.svg" alt="" />
+        <div class="text-sm sm:text-base font-semibold mt-2">BuildUp!</div>
       </div>
-      <a class="relative" routerLink="events">
+      <a class="relative block sm:hidden" routerLink="events">
         <img src="assets/icons/bell.svg" alt="" />
         <div
           *ngIf="event"
@@ -24,7 +24,7 @@
     <!-- notification panel -->
     <div
       *ngIf="event"
-      class="text-white p-4 mt-3.5 cursor-pointer"
+      class="text-white p-4 mt-3.5 cursor-pointer block sm:hidden"
       [ngClass]="
         event?.eventDescription === 'Water leak detected' ? 'bg-rouge' : 'bg-gray3'
       "
@@ -38,38 +38,38 @@
         </div>
       </div>
       <div class="text-sm mt-2">
-        {{ event ? event.floor + ' ' + event.position : "" }}
+        {{ event ? event.floor + '&nbsp;&#183;&nbsp;' + event.position : "" }}
       </div>
     </div>
 
     <!-- address panel -->
-    <div class="bg-white p-4 rounded-xl mt-6">
-      <div *ngIf="!building" class="text-22 text-black font-bold">No building exists</div>
-      <div *ngIf="building" class="text-22 text-black font-bold">{{ building.building }}</div>
-      <div *ngIf="building" class="text-xs opacity-50 mt-3">
+    <div class="bg-white sm:bg-transparent p-4 sm:p-0 rounded-xl mt-6 sm:mt-4 max-w-full sm:max-w-sm lg:max-w-full">
+      <div *ngIf="!building" class="text-22 sm:text-34 text-black font-bold sm:font-semibold leading-7 sm:leading-10">No building exists</div>
+      <div *ngIf="building" class="text-22 sm:text-34 text-black font-bold sm:font-semibold leading-7 sm:leading-10">{{ building.building }}</div>
+      <div *ngIf="building" class="text-xs sm:text-sm opacity-50 mt-3 sm:mt-2">
         {{ building.buildingAddress }} {{ building.buildingCity }} {{building.buildingState}} {{building.buildingCountry}}
       </div>
     </div>
 
     <!-- count section -->
-    <div class="grid grid-cols-2 gap-3 mt-3">
-      <div class="bg-white p-4 rounded-xl border border-solid border-black border-opacity-8">
-        <div class="text-sm text-brown font-medium">Equipment</div>
-        <div class="text-2xl font-bold mt-2">{{ equipments }}</div>
+    <div class="grid grid-cols-2 sm:grid-cols-1 lg:grid-cols-3 gap-3 sm:gap-6 mt-3 sm:mt-14 lg:mt-12 max-w-full sm:max-w-xs lg:max-w-full">
+      <div class="bg-white p-4 sm:px-5 sm:pt-6 sm:pb-7 rounded-xl border border-solid border-black border-opacity-8">
+        <div class="text-sm sm:text-base text-brown font-medium">Equipment</div>
+        <div class="text-2xl sm:text-38 text-black font-bold sm:font-semibold mt-2 sm:mt-4">{{ equipments }}</div>
       </div>
-      <div class="bg-white p-4 rounded-xl border border-solid border-black border-opacity-8">
-        <div class="text-sm text-brown font-medium">Users</div>
-        <div class="text-2xl font-bold mt-2">{{ users }}</div>
+      <div class="bg-white p-4 sm:px-5 sm:pt-6 sm:pb-7 rounded-xl border border-solid border-black border-opacity-8">
+        <div class="text-sm sm:text-base text-brown font-medium">Users</div>
+        <div class="text-2xl sm:text-38 text-black font-bold sm:font-semibold mt-2 sm:mt-4">{{ users }}</div>
       </div>
-      <a routerLink="/devices" class="bg-white p-4 rounded-xl col-span-2 flex items-center justify-between border border-solid border-black border-opacity-8">
+      <a routerLink="/devices" class="bg-white p-4 sm:px-5 sm:pt-6 sm:pb-7 rounded-xl col-span-2 sm:col-span-1 flex items-center justify-between border border-solid border-black border-opacity-8">
         <div>
-          <div class="text-sm text-brown font-medium">Devices</div>
-          <div class="text-2xl text-black font-bold mt-2">{{ devices }}</div>
+          <div class="text-sm sm:text-base text-brown font-medium">Devices</div>
+          <div class="text-2xl sm:text-38 text-black font-bold sm:font-semibold mt-2 sm:mt-4">{{ devices }}</div>
         </div>
         <img src="assets/icons/right.svg" alt="" />
       </a>
     </div>
-    <div class="absolute bottom-0 text-center w-full">
+    <div class="absolute bottom-0 text-center w-full sm:hidden">
       <button
         *ngIf="!showUpdate"
         type="button"
@@ -98,7 +98,7 @@
       <div class="mt-5">
         <div class="text-sm flex gap-2 items-center">
           <div class="w-4">
-            <img class="mx-auto" src="assets/icons/marker.svg" alt="" />
+            <img class="mx-auto" src="assets/icons/location.svg" alt="" />
           </div>
           <div *ngIf="event">
             {{ event.floor }} &nbsp;&#183;&nbsp; {{ event.position }}

@@ -23,6 +23,8 @@ import { AsyncPipe } from '../../node_modules/@angular/common';
 import { AuthService } from './services/auth/auth.service';
 import { MainService } from './services/main/main.service';
 import { ServiceUtils } from './services/serviceUtils';
+import { LayoutModule } from './layout/layout.module';
+
 
 registerLocaleData(en);
 
@@ -40,6 +42,7 @@ registerLocaleData(en);
     AngularFireDatabaseModule,
     AngularFireAuthModule,
     AngularFireMessagingModule,
+    LayoutModule,
   ],
   providers: [
     { provide: NZ_I18N, useValue: en_US },

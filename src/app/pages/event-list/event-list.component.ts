@@ -14,7 +14,7 @@ export class EventListComponent implements OnInit {
   event_id: number;
 
   events: Array<Event> = [];
-  event: Event = null;
+  unread_events: Array<Event> = [];
 
   event_type = Event_type;
   
@@ -45,20 +45,22 @@ export class EventListComponent implements OnInit {
           evt.eventCreatedDate = getTimeString(evt.eventCreatedDate);
         });
         
-        if (res.unread) {
-          let evt = res.unread;
+        this.unread_events = res.unread;
+        this.unread_events.forEach(evt => {
           evt.eventCreatedDate1 = formatTimeString(evt.eventCreatedDate);
           evt.eventCreatedDate = getTimeString(evt.eventCreatedDate);
-          this.event = evt;
-        }
+        });
 
         if (this.event_id) {
-          let evts = this.events;
-          evts.push(this.event);
+          let evts: Event[] = [...this.events, ...this.unread_events];
           let evt = evts.filter(el => el.id === this.event_id);
           if (evt.length > 0)
             this.showInitModal(evt[0]);
         }
+        // for (let i = 0; i < 2; i++) {
+        //   this.unread_events = this.unread_events.concat(this.unread_events)
+        // }
+        // this.events = this.unread_events
       }
       this.loading = false;
     }, (err: any) => { this.loading = false; });
@@ -81,7 +83,7 @@ export class EventListComponent implements OnInit {
 
   createTplModal(tplContent: TemplateRef<{}>, evt: Event, read: Boolean): void {
     this.modal.create({
-      nzStyle: {bottom: 0, position: 'absolute', maxWidth: '100vw', marginBottom: 0},
+      nzStyle: screen.width > 640? {bottom: 0, top: 0, position: 'absolute', maxWidth: '100vw', marginTop: 0, marginBottom: 0}:{bottom: 0, position: 'absolute', maxWidth: '100vw', marginBottom: 0},
       nzTitle: null,
       nzContent: tplContent,
       nzFooter: null,

@@ -10,7 +10,10 @@ module.exports = {
   theme: {
     extend: {
       fontSize: {
-        '22': '1.375rem'
+        '22': '22px',
+        '27': '27px',
+        '34': '34px',
+        '38': '38px',
       },
       colors: {
         rouge: '#FF0018',
@@ -39,11 +42,16 @@ module.exports = {
         '7.5': '30px',
         '8.5': '34px',
         '9.5': '38px',
+        '70': '280px',
+        '77.5': '310px',
       },
       height: {
         '7.5': '30px',
         '8.5': '34px',
         '9.5': '38px',
+      },
+      padding: {
+        '12.5': '50px'
       }
     },
   },

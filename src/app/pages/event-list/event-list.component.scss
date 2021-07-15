@@ -12,9 +12,38 @@
   background-color: #F0F0F0;
 }
 
+@media screen and (max-width:640px) {
+  ::ng-deep .ant-modal-content {
+    border-radius: 12px 12px 0 0 !important;
+    position: absolute;
+    height: max-content !important;
+    bottom: 0;
+    width: 100vw !important;
+    min-width: 100vw !important;
+  }
+  .border1 {
+    border: none !important;
+  }
+}
+.border1 {
+  border: 1px solid rgba(74, 74, 74, 0.15);
+}
 ::ng-deep .ant-modal-content {
-  border-radius: 12px 12px 0 0;
+  border-radius: 0;
   position: absolute;
+  height: 100%;
   bottom: 0;
-  width: 100vw;
+  width: 65vw;
+  min-width: 640px;
+  background-color: #F5F5F5;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.no-scrollbar {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
 }

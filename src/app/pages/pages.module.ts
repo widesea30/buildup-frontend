@@ -28,6 +28,9 @@ import { ToggleButtonComponent } from './components/toggle-button.component';
     NzBadgeModule,
     NzButtonModule,
     NzModalModule
+  ],
+  exports: [
+    EventListComponent
   ]
 })
 export class PagesModule { }

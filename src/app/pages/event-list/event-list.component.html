@@ -1,48 +1,51 @@
-<div *ngIf="!loading" class="px-4 py-8 w-full">
+<div *ngIf="!loading" class="px-4 py-8 w-full h-screen overflow-auto no-scrollbar sm:px-5">
   <div class="flex flex-col">
-    <div class="flex">
+    <div class="flex sm:hidden">
       <a routerLink=".." class="py-4 pr-4"
         ><img src="assets/icons/Back.svg" alt=""
       /></a>
     </div>
-    <div class="text-22 font-bold mt-2">Active events</div>
+    <div class="text-22 font-bold mt-2 sm:font-semibold sm:text-sm lg:text-base">Active events</div>
     <div
-      *ngIf="event"
-      (click)="createTplModal(tplContent, event, false)"
-      class="grid gap-x-3 mt-4"
-      style="grid-template-columns: max-content auto max-content"
+      *ngFor="let evt of unread_events;"
+      (click)="createTplModal(tplContent, evt, false)"
+      class="grid gap-x-3 mt-4 py-4 event-item cursor-pointer"
+      style="grid-template-columns: auto max-content"
     >
-      <div class="flex justify-content items-center">
-        <img src="assets/icons/{{ getWarnImg(event, 0) }}.svg" alt="" />
-      </div>
       <div>
-        <div class="text-base font-medium">{{ event?.eventDescription }}</div>
-        <div class="text-sm">{{ event?.eventCreatedDate }}</div>
+        <div class="flex">
+          <div class="flex justify-content items-center">
+            <img width="32" src="assets/icons/{{ getWarnImg(evt, 0) }}.svg" alt="" />
+          </div>
+          <div>
+            <div class="text-base font-medium">{{ evt?.eventDescription }}</div>
+            <div class="text-xs">{{ evt?.eventCreatedDate }}</div>
+          </div>
+        </div>
+        <div class="text-sm text-opacity-50 mt-3">
+          {{ evt ? evt.floor + '&nbsp;&#183;&nbsp;' + evt.position : "" }}
+        </div>
       </div>
-      <div class="row-span-2 flex justify-content items-center">
+      <div class="row-span-2 flex justify-content items-center block sm:hidden">
         <img src="assets/icons/right.svg" alt="" />
-      </div>
-      <div></div>
-      <div class="text-xs text-opacity-50 mt-3">
-        {{ event ? event.floor + "th floor - " + event.position : "" }}
       </div>
     </div>
 
-    <div class="mt-12">
+    <div class="mt-7 sm:mt-5">
       <div class="text-sm text-brown">History</div>
       <div *ngFor="let evt of events">
         <div
           (click)="createTplModal(tplContent, evt, true)"
-          class="grid gap-x-3 py-4 event-item"
+          class="grid gap-x-3 py-4 event-item cursor-pointer"
         >
           <div class="flex justify-content items-center">
-            <img src="assets/icons/{{ getWarnImg(evt, 1) }}.svg" alt="" />
+            <img width="24" src="assets/icons/{{ getWarnImg(evt, 1) }}.svg" alt="" />
           </div>
           <div>
             <div class="text-sm">{{ evt.eventDescription }}</div>
             <div class="text-xs text-opacity-50">{{ evt.eventCreatedDate }}</div>
           </div>
-          <div class="row-span-2 flex justify-content items-center">
+          <div class="row-span-2 flex justify-content items-center block sm:hidden">
             <img src="assets/icons/right.svg" alt="" />
           </div>
         </div>
@@ -52,44 +55,49 @@
     <ng-template #tplContent let-params>
       <div class="flex justify-between mb-5">
         <div>
-          <div class="text-22 font-bold">{{ params.value?.eventDescription }}</div>
-          <div class="text-sm">{{ params.value.eventCreatedDate }}</div>
+          <div class="text-22 sm:text-27 font-bold">{{ params.value?.eventDescription }}</div>
+          <div class="text-sm font-normal sm:text-lg sm:font-semibold">{{ params.value.eventCreatedDate }}</div>
         </div>
-        <div class="bg-gray4 text-black rounded-full flex justify-center items-center w-7.5 h-7.5 cursor-pointer" (click)="destroyModal()">
+        <div class="bg-gray4 text-black rounded-full flex justify-center items-center w-7.5 h-7.5 sm:w-10 sm:h-10 cursor-pointer" (click)="destroyModal()">
           <img src="assets/icons/close.svg" alt="" />
         </div>
       </div>
       <div class="h-px w-full"></div>
-      <div class="mt-5">
+      <div class="mt-5 sm:mt-6">
         <div class="text-sm flex gap-2 items-center">
           <div class="w-4">
-            <img class="mx-auto" src="assets/icons/marker.svg" alt="" />
+            <img class="mx-auto block sm:hidden" src="assets/icons/location.svg" alt="" />
+            <img class="mx-auto hidden sm:block" src="assets/icons/red-location.svg" alt="" />
           </div>
-          <div *ngIf="params.value">
+          <div class="block sm:hidden" *ngIf="params.value">
             {{ params.value.floor }} &nbsp;&#183;&nbsp; {{ params.value.position }}
           </div>
+          <div class="hidden sm:block text-rouge font-medium" *ngIf="params.value">
+            {{ params.value.floor }} &nbsp;&#8594;&nbsp; {{ params.value.position }}
+          </div>
         </div>
-        <div class="text-sm flex gap-2 items-center mt-3">
+        <div class="text-sm flex gap-2 items-center mt-3 block sm:hidden">
           <div class="w-4">
             <img class="mx-auto" src="assets/icons/clock.svg" alt="" />
           </div>
           <div>{{ params.value.eventCreatedDate1 }}</div>
         </div>
       </div>
-      <div class="w-max mt-3">
+      <div class="w-max mt-3 sm:mt-10">
+        <div class="text-base font-semibold mb-3 hidden sm:block">Detected by</div>
         <div 
-          class="flex bg-gray1 rounded-full px-4 py-2.5 gap-4 cursor-pointer"
+          class="flex bg-gray1 sm:bg-white border1 sm:box-border rounded-full px-4 py-2.5 gap-4 cursor-pointer"
           (click)="goDeviceDetail(params.value.device_id, params.value.device_name)"
         >
-          <div class="text-sm">
-            {{!params.value.eventDescription==event_type.low_battery || !params.value.eventDescription==event_type.low_radio? 'Detected by ' : ''}}
-            <span class="text-rouge">{{ params.value.device_name }}</span>
+          <div class="text-sm flex">
+            <div class="block sm:hidden">Detected by&nbsp;</div>
+            <span class="text-rouge font-normal sm:font-semibold">{{ params.value.device_name }}</span>
           </div>
           <img src="assets/icons/right.svg" alt="" />
         </div>
       </div>
-      <div *ngIf="!params.value.eventDescription==event_type.low_battery || !params.value.eventDescription==event_type.low_radio" class="text-sm font-semibold mt-8">Suggested action</div>
-      <div *ngIf="!params.value.eventDescription==event_type.low_battery || !params.value.eventDescription==event_type.low_radio" class="text-sm mt-3">
+      <div *ngIf="!params.value.eventDescription==event_type.low_battery || !params.value.eventDescription==event_type.low_radio" class="text-sm sm:text-base font-semibold mt-8 sm:mt-10">Suggested action</div>
+      <div *ngIf="!params.value.eventDescription==event_type.low_battery || !params.value.eventDescription==event_type.low_radio" class="text-sm sm:text-base mt-3">
         Check the area for any water damage and notify your supervisor. The
         water valve should be open only after the water leak has been fixed.
       </div>
