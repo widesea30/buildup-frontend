@@ -4,6 +4,7 @@ import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzBadgeModule } from 'ng-zorro-antd/badge';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzModalModule } from 'ng-zorro-antd/modal';
+import { NzTabsModule } from 'ng-zorro-antd/tabs';
 
 import { PagesRoutingModule } from './pages-routing.module';
 import { HomeComponent } from './home/home.component';
@@ -27,7 +28,8 @@ import { ToggleButtonComponent } from './components/toggle-button.component';
     NzIconModule,
     NzBadgeModule,
     NzButtonModule,
-    NzModalModule
+    NzModalModule,
+    NzTabsModule,
   ],
   exports: [
     EventListComponent

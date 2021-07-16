@@ -14,6 +14,7 @@ export interface Device {
 export interface DeviceInfo {
   id: number;
   devEUI: string;
+  buildingFloor: string;
   buildingFloorArea: string;
   deviceMACAddress: string;
   deviceApplicationKey: string;

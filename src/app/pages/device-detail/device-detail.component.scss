@@ -24,3 +24,14 @@
   background-color: #FF0018;
   border-radius: 20px;
 }
+
+::ng-deep .ant-tabs-tab {
+  color: #827576 !important;
+  font-size: 16px;
+}
+
+::ng-deep .ant-tabs-ink-bar {
+  background-color: #FF0018;
+  height: 3px !important;
+  border-radius: 20px;
+}
